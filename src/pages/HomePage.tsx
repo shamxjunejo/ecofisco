@@ -1,6 +1,5 @@
       import { useState, useEffect } from 'react';
       import './textAnimation.css';
-     
 
       const ElementorHeadline = () => {
         const phrases = [
@@ -310,7 +309,7 @@
             <div className="relative rounded-xl overflow-hidden mb-8 sm:mb-12">
               <div className="relative w-full h-[400px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
                 <img
-                  src="./public/images/hero.JPG"
+                  src="/src/images/hero.jpg"
                   alt="Italian Immigration Experts"
                   className="absolute inset-0 w-full h-full object-cover rounded-xl"
                 />
@@ -509,7 +508,7 @@
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">England</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
                       <img 
-                        src="src/images/italy.png"
+                        src="public/images/italy.png"
                         alt="English Lawyer in Italy"
                         className="w-[35%] border border-blue-600 rounded-[100px]"
                       />
@@ -579,7 +578,7 @@
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">China</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
                       <img 
-                        src="public/images/italy.png"
+                        src="src/images/italy.png"
                         alt="Chinese Lawyer in Italy"
                         className="w-[35%] border border-blue-600 rounded-[100px]"
                       />
