@@ -5,7 +5,7 @@
       import language from "../assets/language.png";
       import clock from "../assets/clock.png";
       import passport from "../assets/passport.png";
-      import it from "../assets/it.svg";
+    
       
 
 
@@ -468,7 +468,7 @@
                   <div className="p-6 rounded-[24px]">
                     <div className="flex flex-col items-center">
                       <img 
-                        src={it}
+                        src={language}
                         alt="Languages icon"
                         className="w-10 h-10 mb-4 text-gray-700"
                       />

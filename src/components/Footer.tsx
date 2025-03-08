@@ -1,5 +1,5 @@
 import { Facebook, Instagram, Youtube, Globe } from 'lucide-react';
-
+import it from "../assets/it.svg";
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-r from-blue-50 to-indigo-50 mt-16 border-t border-blue-100">
@@ -58,7 +58,7 @@ export default function Footer() {
             <h4 className="text-lg font-medium text-blue-800 mb-4">Language</h4>
             <div className="flex space-x-3">
               <a href="#" className="flex items-center space-x-2 text-gray-600 hover:text-blue-700 transition-colors">
-                <img src="/it.svg" className="h-5 w-7 shadow-sm" />
+                <img src={it} className="h-5 w-7 shadow-sm" />
                 
               </a>
             </div>
