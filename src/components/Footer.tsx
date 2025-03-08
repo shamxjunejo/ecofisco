@@ -7,7 +7,7 @@ export default function Footer() {
         {/* Top Section with Logo and Social */}
         <div className="py-10 grid grid-cols-1 md:grid-cols-2 items-center gap-8">
           <div className="flex flex-col items-center md:items-start">
-            <h3 className="text-xl font-bold text-blue-800 mb-2">SH Immigration Specialists</h3>
+            <h3 className="text-xl font-bold text-blue-800 mb-2">EcoFISCO Immigration Specialists</h3>
             <p className="text-blue-700 font-medium">Your Guide to Italian Immigration</p>
           </div>
           
@@ -68,7 +68,7 @@ export default function Footer() {
         {/* Disclaimer */}
         <div className="py-6 border-t border-blue-100">
           <p className="text-xs text-gray-500 leading-relaxed text-center">
-            SH Immigration Specialists is an agency for foreigners specialized in administrative assistance and advice for immigration in Italy and, when necessary, puts you in touch with an immigration expert. The information provided on this website is for general informational purposes only and does not constitute legal advice. We recommend that you consult directly with an immigration attorney working with us for specific advice regarding your individual situation.
+            EcoFISCO Immigration Specialists is an agency for foreigners specialized in administrative assistance and advice for immigration in Italy and, when necessary, puts you in touch with an immigration expert. The information provided on this website is for general informational purposes only and does not constitute legal advice. We recommend that you consult directly with an immigration attorney working with us for specific advice regarding your individual situation.
           </p>
         </div>
         
