@@ -324,7 +324,7 @@
                 <div className="absolute inset-0 bg-gradient-to-l from-blue-900/30 to-blue-800/30 rounded-xl">
                   <div className="p-4 sm:p-8 md:p-10 lg:p-12 max-w-3xl">
                     <h1 className="hidden md:block text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4 sm:mb-8">
-                      <span className="tracking-wider text-white glow-blue-600">Welcome to</span> <span className="text-blue-600" style={{WebkitTextStroke: '0.8px white'}}>ECOFISCO</span>
+                      <span className="tracking-wider text-white glow-blue-600">Welcome to</span> <span className="text-blue-600" style={{WebkitTextStroke: '0.8px white'}}>E-Co-Fisco</span>
                     </h1>
                     
                     <div className="mb-4 sm:mb-8">
@@ -408,9 +408,9 @@
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`px-4 py-2 rounded-full transition-colors ${
+                      className={`px-4 py-2 rounded-full transition-colors border border-gray-300 ${
                         activeTab === tab.id
-                          ? 'bg-blue-600 text-white'
+                          ? 'bg-blue-600 text-white border-transparent'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                       }`}
                     >
@@ -486,11 +486,11 @@
             </div>
 
             {/* Native Speaking Lawyers Section */}
-            <div className="bg-[#eff6ff] py-16 rounded-[40px]">
+            <div className="bg-[#] py-16 rounded-[40px]">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
                   <h3 className="text-2xl font-semibold text-gray-600 mb-2">
-                    An agency for foreigners that breaks down barriers
+                    An agency for foreigners that breff6ffeaks down barriers
                   </h3>
                   <h2 className="text-3xl font-bold text-blue-500 mb-4">
                     Native speaking immigration experts
@@ -589,22 +589,13 @@
                     </div>
                   </div>
 
-                  <div className="text-center">
-                    <h3 className="text-xl font-semibold text-blue-900 mb-4">Bangladesh</h3>
-                    <div className="rounded-[24px] overflow-hidden flex justify-center">
-                      <img 
-                        src={italy}
-                        alt="Bangladesh Lawyer in Italy"
-                        className="w-[35%] border border-blue-600 rounded-[100px]"
-                      />
-                    </div>
-                  </div>
+                  
                 </div>
 
-                <div className="text-center">
+                <div className="text-center mb-16">
                   <a 
                     href="#contact-form"
-                    className="inline-block px-8 py-3 bg-blue-600 text-white rounded-full text-lg font-semibold"
+                    className="inline-block px-8 py-3 bg-blue-600 text-white rounded-full text-lg font-semibold hover:bg-blue-700 transition-colors"
                   >
                     Contact us for free
                   </a>
@@ -612,6 +603,196 @@
               </div>
             </div>
 
-          </div>
-        );
-      }
+            {/* Customer Reviews Section */}
+            <div className="bg-transparent py-16">
+              <div className="max-w-7xl mx-auto px-4">
+                <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
+                  What our customers say
+                </h2>
+
+                <div className="flex justify-center items-center gap-2 mb-8">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                  <span className="ml-2 text-xl font-semibold text-gray-900">5.0</span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {[
+                    { name: "Akiko Tanaka", location: "Tokyo, Japan", initials: "AT", review: "E-Co-Fisco made my visa application process incredibly smooth. Their expertise and professional guidance helped me navigate through complex Italian bureaucracy with ease." },
+                    { name: "Carlos Silva", location: "São Paulo, Brazil", initials: "CS", review: "Outstanding service! They helped me obtain my work visa in record time. Very professional and knowledgeable team." },
+                    { name: "Maria Garcia", location: "Madrid, Spain", initials: "MG", review: "The team at E-Co-Fisco was incredibly helpful throughout my citizenship application process. Highly recommended!" },
+                    { name: "John Smith", location: "London, UK", initials: "JS", review: "Excellent support for my residency permit application. Clear communication and great results." },
+                    { name: "Sophie Martin", location: "Paris, France", initials: "SM", review: "Their expertise in Italian immigration law is unmatched. Made the whole process stress-free." },
+                    { name: "Ahmed Hassan", location: "Cairo, Egypt", initials: "AH", review: "Very professional service. They handled my student visa application perfectly." },
+                    { name: "Li Wei", location: "Beijing, China", initials: "LW", review: "Great experience working with E-Co-Fisco. They made the complex simple." },
+                    { name: "Anna Kowalski", location: "Warsaw, Poland", initials: "AK", review: "Fantastic support throughout my visa application. Would definitely recommend." },
+                    { name: "Raj Patel", location: "Mumbai, India", initials: "RP", review: "Their knowledge of Italian immigration procedures is impressive. Great service!" },
+                    { name: "Elena Popov", location: "Moscow, Russia", initials: "EP", review: "Very satisfied with their professional approach and successful outcome." },
+                    { name: "David Kim", location: "Seoul, Korea", initials: "DK", review: "Efficient and reliable service. Made my move to Italy much easier." },
+                    { name: "Luis Rodriguez", location: "Mexico City, Mexico", initials: "LR", review: "Excellent guidance throughout the entire process. Very happy with the results." },
+                    { name: "Sarah Johnson", location: "Sydney, Australia", initials: "SJ", review: "Professional team that delivers results. Highly recommended for immigration services." },
+                    { name: "Hans Mueller", location: "Berlin, Germany", initials: "HM", review: "Very thorough and professional approach. Great communication throughout." },
+                    { name: "Yuki Sato", location: "Osaka, Japan", initials: "YS", review: "Their expertise made my visa application process smooth and successful." },
+                    { name: "Mohamed Ali", location: "Dubai, UAE", initials: "MA", review: "Excellent service and support. Would definitely use their services again." }
+                  ].map((review, index) => (
+                    <div key={index} className="bg-[#eff6ff] rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow relative min-h-[300px]">
+                      <div className="flex justify-center mb-4">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center">
+                          <span className="text-sm text-white font-semibold">{review.initials}</span>
+                        </div>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 text-center">{review.name}</h3>
+                      <p className="text-sm text-gray-500 mb-4 text-center">{review.location}</p>
+                      <div className="flex justify-center mb-4">
+                        {[...Array(5)].map((_, i) => (
+                          <svg key={i} className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        ))}
+                      </div>
+                      <p className="text-gray-700 text-sm text-center pb-8">{review.review}</p>
+                      <p className="text-sm text-gray-500 text-center absolute bottom-6 left-0 right-0">
+                        {[
+                          "2 years ago",
+                          "1 year ago", 
+                          "8 months ago",
+                          "6 months ago",
+                          "4 months ago",
+                          "3 months ago",
+                          "5 months ago",
+                          "7 months ago",
+                          "1 year ago",
+                          "9 months ago",
+                          "2 years ago",
+                          "1 year ago",
+                          "6 months ago", 
+                          "8 months ago",
+                          "4 months ago",
+                          "5 months ago"
+                        ][index]}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Call to Action Section */}
+            <div className="bg-gradient-to-r from-blue-500 to-blue-700 py-16 rounded-[40px]">
+              <div className="max-w-7xl mx-auto px-4">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                  <div className="text-center md:text-left max-w-2xl">
+                    <h2 className="text-3xl font-bold text-white mb-4">
+                      Choose the most loved immigration agency in Italy
+                    </h2>
+                    <p className="text-lg text-blue-100">
+                      To avoid making fatal mistakes, find out how we can help you.
+                    </p>
+                  </div>
+                  <div>
+                    <a 
+                      href="#contact-form"
+                      className="inline-block px-8 py-4 bg-white text-blue-600 rounded-full text-lg font-semibold hover:bg-blue-50 transition-colors hover:transform hover:translate-y-[-2px]"
+                    >
+                      Contact us now
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Why Choose Us Section */}
+            <div className="bg-transparent relative">
+              <div className="absolute top-0 left-0 w-full overflow-hidden">
+                
+              </div>
+              
+              <div className="bg-transparent py-24">
+                <div className="relative w-full overflow-hidden mb-16">
+                  
+                </div>
+
+                <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12">
+                  {/* Why Not Choose Us */}
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Why You Should NOT Choose E-Co-Fisco Immigration Specialists</h3>
+                    <p className="text-lg text-gray-600 mb-8">We can't help you if</p>
+                    
+                    <div className="space-y-4">
+                      <details className="border border-gray-200 rounded-lg">
+                        <summary className="cursor-pointer p-4 font-semibold flex justify-between items-center">
+                          Looking for quick shortcuts?
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
+                        </summary>
+                        <div className="p-4 pt-0">
+                          <p>Our process is careful and meticulous, ensuring every detail is perfect. If you are looking for a quick and superficial solution, our agency for foreigners is not the right choice, because we offer a higher level of care and attention.</p>
+                        </div>
+                      </details>
+
+                      <details className="border border-gray-200 rounded-lg">
+                        <summary className="cursor-pointer p-4 font-semibold flex justify-between items-center">
+                          You prefer a generic and impersonal service
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
+                        </summary>
+                        <div className="p-4 pt-0">
+                          <p>We take the time to understand your specific needs and tailor our approach to you. If you are looking for a standard solution that fits everyone, our law firm for foreigners may not be the right choice.</p>
+                        </div>
+                      </details>
+
+                      <details className="border border-gray-200 rounded-lg">
+                        <summary className="cursor-pointer p-4 font-semibold flex justify-between items-center">
+                          You don't want to invest in quality and long-term results
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
+                        </summary>
+                        <div className="p-4 pt-0">
+                          <p>We don't offer the cheapest solutions, but we guarantee exceptional value and long-lasting results. If your goal is to reduce costs rather than to achieve the best possible outcome, our foreign law firm may not be the right choice for you.</p>
+                        </div>
+                      </details>
+                    </div>
+                  </div>
+
+                  {/* Why Choose Us */}
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Why You Should Choose E-Co-Fisco Immigration Specialists</h3>
+                    <p className="text-lg text-gray-600 mb-8">We will fight for you if</p>
+
+                    <div className="space-y-4">
+                      <details className="border border-gray-200 rounded-lg">
+                        <summary className="cursor-pointer p-4 font-semibold flex justify-between items-center">
+                          Do you want peace of mind by relying on experts?
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
+                        </summary>
+                        <div className="p-4 pt-0">
+                          <p>If you are looking for a smooth immigration process, handled with professionalism and attention to detail, our immigration lawyer allows you to focus on your personal and professional goals without unnecessary stress.</p>
+                        </div>
+                      </details>
+
+                      <details className="border border-gray-200 rounded-lg">
+                        <summary className="cursor-pointer p-4 font-semibold flex justify-between items-center">
+                          You value your time and want to avoid costly mistakes
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
+                        </summary>
+                        <div className="p-4 pt-0">
+                          <p>The paperwork can be complex, but our experience streamlines the process, minimizing delays and errors, so you can get results faster and without unnecessary expense. Our lawyer for foreigners is at your side to guide you through every step.</p>
+                        </div>
+                      </details>
+
+                      <details className="border border-gray-200 rounded-lg">
+                        <summary className="cursor-pointer p-4 font-semibold flex justify-between items-center">
+                          You seek precision and efficiency to achieve your goals
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
+                        </summary>
+                        <div className="p-4 pt-0">
+                          <p>Whether it's a visa, citizenship or other immigration needs, we offer a structured approach that gets you where you need to be with minimal disruption to your life or business. Our law firm for foreigners is ready to support you in every phase of the process.</p>
+                        </div>
+                      </details>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              </div>
+      );};
