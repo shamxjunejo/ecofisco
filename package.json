@@ -1,5 +1,6 @@
 {
   "name": "vite-react-typescript-starter",
+  "homepage": "https://shamxjunejo.github.io/ecofisco/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,9 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist --repo https://github.com/shamxjunejo/ecofisco.git"
+    "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://shamxjunejo.github.io/ecofisco/",
   "dependencies": {
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
