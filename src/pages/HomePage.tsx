@@ -508,7 +508,7 @@
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">England</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
                       <img 
-                        src="src/images/italy.png"
+                        src="public/images/italy.png"
                         alt="English Lawyer in Italy"
                         className="w-[35%] border border-blue-600 rounded-[100px]"
                       />
@@ -578,7 +578,7 @@
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">China</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
                       <img 
-                        src="src/images/italy.png"
+                        src="public/images/italy.png"
                         alt="Chinese Lawyer in Italy"
                         className="w-[35%] border border-blue-600 rounded-[100px]"
                       />
