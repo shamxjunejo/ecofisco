@@ -75,7 +75,7 @@
             title: 'Residence permit',
             content: (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Residence permit release</h3>
                   <p className="text-gray-600 mb-2">Start your life in Italy</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -85,7 +85,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Renewal of residence permit</h3>
                   <p className="text-gray-600 mb-2">Maintain the right to reside</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -95,7 +95,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Residence permit conversion</h3>
                   <p className="text-gray-600 mb-2">Change your stay requirements</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -113,7 +113,7 @@
             title: 'Italian citizenship',
             content: (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Italian citizenship by residence</h3>
                   <p className="text-gray-600 mb-2">Naturalization as an Italian citizen</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -123,7 +123,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Italian citizenship by marriage</h3>
                   <p className="text-gray-600 mb-2">Get your spouse's rights</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -133,7 +133,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Italian citizenship by descent</h3>
                   <p className="text-gray-600 mb-2">Claim your blood right</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -151,7 +151,7 @@
             title: 'Family reunification',
             content: (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Family reunification</h3>
                   <p className="text-gray-600 mb-2">Reunite with your loved ones who remain abroad</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -161,7 +161,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Family cohesion</h3>
                   <p className="text-gray-600 mb-2">Reunite with your relatives already in Italy</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -179,7 +179,7 @@
             title: 'Flows decree',
             content: (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Sending application for flow decree</h3>
                   <p className="text-gray-600 mb-2">Get a work visa</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -189,7 +189,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Certification of the flow decree</h3>
                   <p className="text-gray-600 mb-2">One of the most important documents</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -207,7 +207,7 @@
             title: 'Companies and employers',
             content: (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Request for non-EU personnel</h3>
                   <p className="text-gray-600 mb-2">Hire staff from abroad</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -217,7 +217,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">EU Blue Card</h3>
                   <p className="text-gray-600 mb-2">Hire highly specialized staff</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -235,7 +235,7 @@
             title: 'Translation, policies and surety',
             content: (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Sworn translation</h3>
                   <p className="text-gray-600 mb-2">Prepare everything you need</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -245,7 +245,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Health insurance</h3>
                   <p className="text-gray-600 mb-2">Often required for visa</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -255,7 +255,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Bank guarantee</h3>
                   <p className="text-gray-600 mb-2">Increase your chances of getting a visa</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -273,7 +273,7 @@
             title: 'Documents for visa',
             content: (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Work Visa</h3>
                   <p className="text-gray-600 mb-2">Start your new career</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -283,7 +283,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Study Visa</h3>
                   <p className="text-gray-600 mb-2">Follow your dreams in Italy</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -293,7 +293,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Elective residence visa</h3>
                   <p className="text-gray-600 mb-2">Enjoy the Italian Dolce Vita</p>
                   <p className="text-gray-700 mb-4 font-poppins">
