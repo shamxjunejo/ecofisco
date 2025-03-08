@@ -1,5 +1,6 @@
       import { useState, useEffect } from 'react';
       import './textAnimation.css';
+      import italy from "../assets/italy.png";
 
       const ElementorHeadline = () => {
         const phrases = [
@@ -497,8 +498,8 @@
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">Spain</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
                       <img 
-                        src="src/images/italy.png"
-                        alt="Spanish Lawyer in Italy"
+                       src={italy} alt="Italy"
+                        
                         className="w-[35%] border border-blue-600 rounded-[100px]"
                       />
                     </div>
@@ -508,8 +509,8 @@
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">England</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
                       <img 
-                        src="public/images/italy.png"
-                        alt="English Lawyer in Italy"
+                        src={italy} alt="Italy"
+                       
                         className="w-[35%] border border-blue-600 rounded-[100px]"
                       />
                     </div>
@@ -578,7 +579,7 @@
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">China</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
                       <img 
-                        src="src/images/italy.png"
+                        src="{italy}"
                         alt="Chinese Lawyer in Italy"
                         className="w-[35%] border border-blue-600 rounded-[100px]"
                       />
