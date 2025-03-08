@@ -75,7 +75,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="py-4 border-t border-blue-100 text-center">
           <p className="text-xs text-gray-500">
-            © {new Date().getFullYear()} SH Immigration Specialists. All rights reserved.
+            © {new Date().getFullYear()} EcoFISCO Immigration Specialists. All rights reserved.
           </p>
         </div>
       </div>
