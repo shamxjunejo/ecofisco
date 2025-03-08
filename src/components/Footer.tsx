@@ -8,7 +8,6 @@ export default function Footer() {
         <div className="py-10 grid grid-cols-1 md:grid-cols-2 items-center gap-8">
           <div className="flex flex-col items-center md:items-start">
             <h3 className="text-xl font-bold text-blue-800 mb-2">EcoFISCO Immigration Specialists</h3>
-            <p className="text-blue-700 font-medium">Your Guide to Italian Immigration</p>
           </div>
           
           <div className="flex flex-col items-center md:items-end">

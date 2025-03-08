@@ -438,7 +438,7 @@
                         alt="Clock icon" 
                         className="w-10 h-10 mb-4 text-gray-700"
                       />
-                      <h3 className="text-xl font-semibold text-gray-900 text-center mb-2">
+                      <h3 className="text-xl font-semibold text-gray-700 text-center mb-2">
                         Stress-free documents
                       </h3>
                       <p className="text-gray-600 text-center">
@@ -455,7 +455,7 @@
                         alt="Passport icon"
                         className="w-10 h-10 mb-4 text-gray-700"
                       />
-                      <h3 className="text-xl font-semibold text-gray-900 text-center mb-2">
+                      <h3 className="text-xl font-semibold text-gray-700 text-center mb-2">
                         At your side with embassies, prefectures and police headquarters
                       </h3>
                       <p className="text-gray-600 text-center">
@@ -472,7 +472,7 @@
                         alt="Languages icon"
                         className="w-10 h-10 mb-4 text-gray-700"
                       />
-                      <h3 className="text-xl font-semibold text-gray-900 text-center mb-2">
+                      <h3 className="text-xl font-semibold text-gray-700 text-center mb-2">
                         Consulting in your language
                       </h3>
                       <p className="text-gray-600 text-center">
@@ -489,18 +489,18 @@
             <div className="bg-[#eff6ff] py-16 rounded-[40px]">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
-                  <h3 className="text-2xl font-semibold text-black mb-2">
+                  <h3 className="text-2xl font-semibold text-gray-600 mb-2">
                     An agency for foreigners that breaks down barriers
                   </h3>
-                  <h2 className="text-3xl font-bold text-black mb-4">
+                  <h2 className="text-3xl font-bold text-blue-500 mb-4">
                     Native speaking immigration experts
                   </h2>
-                  <p className="text-lg text-black">
+                  <p className="text-lg text-gray-600">
                     Say goodbye to language barriers, <strong>our immigration consultants speak your language</strong>, so we understand each other better and find the best solution in record time.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mb-12">
                   <div className="text-center">
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">Spain</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
@@ -533,9 +533,7 @@
                       />
                     </div>
                   </div>
-                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                   <div className="text-center">
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">Morocco</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
@@ -568,9 +566,7 @@
                       />
                     </div>
                   </div>
-                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                   <div className="text-center">
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">France</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
