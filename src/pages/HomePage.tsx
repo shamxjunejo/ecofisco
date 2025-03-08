@@ -1,6 +1,12 @@
       import { useState, useEffect } from 'react';
       import './textAnimation.css';
       import italy from "../assets/italy.png";
+      import hero from "../assets/hero.jpg";
+      import language from "../assets/language.png";
+      import clock from "../assets/clock.png";
+      import passport from "../assets/passport.png";
+      
+
 
       const ElementorHeadline = () => {
         const phrases = [
@@ -310,7 +316,7 @@
             <div className="relative rounded-xl overflow-hidden mb-8 sm:mb-12">
               <div className="relative w-full h-[400px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
                 <img
-                  src="/src/images/hero.jpg"
+                  src={hero}
                   alt="Italian Immigration Experts"
                   className="absolute inset-0 w-full h-full object-cover rounded-xl"
                 />
@@ -427,7 +433,7 @@
                   <div className="p-6 rounded-[24px]">
                     <div className="flex flex-col items-center">
                       <img 
-                        src="src/images/clock.png"
+                        src={clock}
                         alt="Clock icon" 
                         className="w-10 h-10 mb-4 text-gray-700"
                       />
@@ -444,7 +450,7 @@
                   <div className="p-6 rounded-[24px]">
                     <div className="flex flex-col items-center">
                       <img 
-                        src="src/images/passport.png"
+                        src={passport}
                         alt="Passport icon"
                         className="w-10 h-10 mb-4 text-gray-700"
                       />
@@ -461,7 +467,7 @@
                   <div className="p-6 rounded-[24px]">
                     <div className="flex flex-col items-center">
                       <img 
-                        src="src/images/language.png"
+                        src={language}
                         alt="Languages icon"
                         className="w-10 h-10 mb-4 text-gray-700"
                       />
@@ -498,8 +504,8 @@
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">Spain</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
                       <img 
-                       src={italy} alt="Italy"
-                        
+                        src={italy}
+                        alt="Spanish Lawyer in Italy"
                         className="w-[35%] border border-blue-600 rounded-[100px]"
                       />
                     </div>
@@ -509,8 +515,8 @@
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">England</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
                       <img 
-                        src={italy} alt="Italy"
-                       
+                        src={italy}
+                        alt="English Lawyer in Italy"
                         className="w-[35%] border border-blue-600 rounded-[100px]"
                       />
                     </div>
@@ -520,7 +526,7 @@
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">Pakistan</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
                       <img 
-                        src="src/images/italy.png"
+                        src={italy}
                         alt="Pakistani Lawyer in Italy"
                         className="w-[35%] border border-blue-600 rounded-[100px]"
                       />
@@ -533,7 +539,7 @@
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">Morocco</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
                       <img 
-                        src="src/images/italy.png"
+                        src={italy}
                         alt="Moroccan Lawyer in Italy"
                         className="w-[35%] border border-blue-600 rounded-[100px]"
                       />
@@ -544,7 +550,7 @@
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">Portugal</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
                       <img 
-                        src="src/images/italy.png"
+                        src={italy}
                         alt="Portuguese Lawyer in Italy"
                         className="w-[35%] border border-blue-600 rounded-[100px]"
                       />
@@ -555,7 +561,7 @@
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">India</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
                       <img 
-                        src="src/images/italy.png"
+                        src={italy}
                         alt="Indian Lawyer in Italy"
                         className="w-[35%] border border-blue-600 rounded-[100px]"
                       />
@@ -568,7 +574,7 @@
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">France</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
                       <img 
-                        src="src/images/italy.png"
+                        src={italy}
                         alt="French lawyer in Italy"
                         className="w-[35%] border border-blue-600 rounded-[100px]"
                       />
@@ -579,7 +585,7 @@
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">China</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
                       <img 
-                        src="{italy}"
+                        src={italy}
                         alt="Chinese Lawyer in Italy"
                         className="w-[35%] border border-blue-600 rounded-[100px]"
                       />
@@ -590,7 +596,7 @@
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">Bangladesh</h3>
                     <div className="rounded-[24px] overflow-hidden flex justify-center">
                       <img 
-                        src="src/images/italy.png"
+                        src={italy}
                         alt="Bangladesh Lawyer in Italy"
                         className="w-[35%] border border-blue-600 rounded-[100px]"
                       />
