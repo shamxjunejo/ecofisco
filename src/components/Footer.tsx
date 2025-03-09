@@ -7,7 +7,7 @@ export default function Footer() {
         {/* Top Section with Logo and Social */}
         <div className="py-10 grid grid-cols-1 md:grid-cols-2 items-center gap-8">
           <div className="flex flex-col items-center md:items-start">
-            <h3 className="text-xl font-bold text-blue-800 mb-2">E-Co-Fisco Immigration Specialists</h3>
+            <h3 className="text-xl font-bold text-blue-800 mb-2">E-Co FISCO Immigration Specialists</h3>
           </div>
           
           <div className="flex flex-col items-center md:items-end">
@@ -70,14 +70,14 @@ export default function Footer() {
         {/* Disclaimer */}
         <div className="py-6 border-t border-blue-100">
           <p className="text-xs text-gray-500 leading-relaxed text-center">
-            E-Co-Fisco Immigration Specialists is an agency for foreigners specialized in administrative assistance and advice for immigration in Italy and, when necessary, puts you in touch with an immigration expert. The information provided on this website is for general informational purposes only and does not constitute legal advice. We recommend that you consult directly with an immigration attorney working with us for specific advice regarding your individual situation.
+            E-Co Fisco Immigration Specialists is an agency for foreigners specialized in administrative assistance and advice for immigration in Italy and, when necessary, puts you in touch with an immigration expert. The information provided on this website is for general informational purposes only and does not constitute legal advice. We recommend that you consult directly with an immigration attorney working with us for specific advice regarding your individual situation.
           </p>
         </div>
         
         {/* Copyright */}
         <div className="py-4 border-t border-blue-100 text-center">
           <p className="text-xs text-gray-500">
-            © {new Date().getFullYear()} E-Co-Fisco Immigration Specialists. All rights reserved.
+            © {new Date().getFullYear()} E-Co FISCO Immigration Specialists. All rights reserved.
           </p>
         </div>
       </div>
