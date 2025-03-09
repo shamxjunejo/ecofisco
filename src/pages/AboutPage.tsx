@@ -41,7 +41,7 @@ Our goal is to see the smile and happiness of people when, after months of strug
                 </svg>
               </div>
               <h3 className="mt-4 text-xl font-medium text-gray-900">Khadija Zouine</h3>
-              <p className="text-gray-500">Law Expert</p>
+              <p className="text-gray-500">Immigration & Tax Consultant</p>
             </div>
           </div>
         </div>
