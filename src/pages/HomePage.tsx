@@ -75,7 +75,7 @@
             title: 'Residence permit',
             content: (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Residence permit release</h3>
                   <p className="text-gray-600 mb-2">Start your life in Italy</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -85,7 +85,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Renewal of residence permit</h3>
                   <p className="text-gray-600 mb-2">Maintain the right to reside</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -95,7 +95,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Residence permit conversion</h3>
                   <p className="text-gray-600 mb-2">Change your stay requirements</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -113,7 +113,7 @@
             title: 'Italian citizenship',
             content: (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Italian citizenship by residence</h3>
                   <p className="text-gray-600 mb-2">Naturalization as an Italian citizen</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -123,7 +123,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Italian citizenship by marriage</h3>
                   <p className="text-gray-600 mb-2">Get your spouse's rights</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -133,7 +133,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Italian citizenship by descent</h3>
                   <p className="text-gray-600 mb-2">Claim your blood right</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -151,7 +151,7 @@
             title: 'Family reunification',
             content: (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Family reunification</h3>
                   <p className="text-gray-600 mb-2">Reunite with your loved ones who remain abroad</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -161,7 +161,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Family cohesion</h3>
                   <p className="text-gray-600 mb-2">Reunite with your relatives already in Italy</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -179,7 +179,7 @@
             title: 'Flows decree',
             content: (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Sending application for flow decree</h3>
                   <p className="text-gray-600 mb-2">Get a work visa</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -189,7 +189,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Certification of the flow decree</h3>
                   <p className="text-gray-600 mb-2">One of the most important documents</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -207,7 +207,7 @@
             title: 'Companies and employers',
             content: (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Request for non-EU personnel</h3>
                   <p className="text-gray-600 mb-2">Hire staff from abroad</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -217,7 +217,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">EU Blue Card</h3>
                   <p className="text-gray-600 mb-2">Hire highly specialized staff</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -235,7 +235,7 @@
             title: 'Translation, policies and surety',
             content: (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Sworn translation</h3>
                   <p className="text-gray-600 mb-2">Prepare everything you need</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -245,7 +245,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Health insurance</h3>
                   <p className="text-gray-600 mb-2">Often required for visa</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -255,7 +255,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Bank guarantee</h3>
                   <p className="text-gray-600 mb-2">Increase your chances of getting a visa</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -273,7 +273,7 @@
             title: 'Documents for visa',
             content: (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Work Visa</h3>
                   <p className="text-gray-600 mb-2">Start your new career</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -283,7 +283,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Study Visa</h3>
                   <p className="text-gray-600 mb-2">Follow your dreams in Italy</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -293,7 +293,7 @@
                     Find out more
                   </button>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center">
+                <div className="bg-white p-6 border border-gray-300 rounded-[40px] hover:shadow-lg transition-shadow flex flex-col items-center text-center">
                   <h3 className="text-xl font-semibold mb-2">Elective residence visa</h3>
                   <p className="text-gray-600 mb-2">Enjoy the Italian Dolce Vita</p>
                   <p className="text-gray-700 mb-4 font-poppins">
@@ -367,7 +367,7 @@
 
 
 
-            <div className="bg-white shadow-lg rounded-lg p-6 text-blue-900 mb-16">
+            <div className="bg-transparent rounded-lg p-6 text-gray-700 mb-16">
               <h2 className="text-2xl font-bold text-center">Italy is 57th in terms of efficiency of Public Administration</h2>
               <h3 className="text-xl font-semibold text-center mt-4">Why is it so difficult to communicate with public offices?</h3>
               <p className="text-lg mt-4">
@@ -388,15 +388,15 @@
             </div>
 
             {/* Tab Section */}
-            <div className="relative bg-gradient-to-b from-blue-50 to-transparent py-16 mb-16">
+            <div className="relative bg-blue-50 py-12 mb-12 rounded-[40px] mx-4">
               <div className="absolute top-0 left-0 w-full overflow-hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" className="h-16 w-full">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" className="h-16 w-full rounded-t-[40px]">
                   <path className="fill-white" d="M1000,4.3V0H0v4.3C0.9,23.1,126.7,99.2,500,100S1000,22.7,1000,4.3z" />
                 </svg>
               </div>
 
-              <div className="relative z-10">
-                <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
+              <div className="relative z-10 max-w-[95%] mx-auto">
+                <h2 className="text-3xl font-bold text-center text-gray-600 mb-4">
                   Our Immigration Services
                 </h2>
                 <h3 className="text-xl text-center text-gray-700 mb-12">
@@ -408,7 +408,7 @@
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`px-4 py-2 rounded-full transition-colors border border-gray-300 ${
+                      className={`px-4 py-2 rounded-full transition-colors border border-gray-400 ${
                         activeTab === tab.id
                           ? 'bg-blue-600 text-white border-transparent'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -489,9 +489,6 @@
             <div className="bg-[#] py-16 rounded-[40px]">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
-                  <h3 className="text-2xl font-semibold text-gray-600 mb-2">
-                    An agency for foreigners that breff6ffeaks down barriers
-                  </h3>
                   <h2 className="text-3xl font-bold text-blue-500 mb-4">
                     Native speaking immigration experts
                   </h2>
@@ -589,16 +586,17 @@
                     </div>
                   </div>
 
-                  
-                </div>
+                  <div className="text-center hidden md:block">
+                    <h3 className="text-xl font-semibold text-blue-900 mb-4">Bangladesh</h3>
+                    <div className="rounded-[24px] overflow-hidden flex justify-center">
+                      <img 
+                        src={italy}                    
+                        className="w-[35%] border border-blue-600 rounded-[100px]"
+                      />
+                    </div>
+                  </div>
 
-                <div className="text-center mb-16">
-                  <a 
-                    href="#contact-form"
-                    className="inline-block px-8 py-3 bg-blue-600 text-white rounded-full text-lg font-semibold hover:bg-blue-700 transition-colors"
-                  >
-                    Contact us for free
-                  </a>
+
                 </div>
               </div>
             </div>
@@ -606,7 +604,7 @@
             {/* Customer Reviews Section */}
             <div className="bg-transparent py-16">
               <div className="max-w-7xl mx-auto px-4">
-                <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
+                <h2 className="text-3xl font-bold text-center text-blue-500 mb-8">
                   What our customers say
                 </h2>
 
@@ -628,15 +626,7 @@
                     { name: "Sophie Martin", location: "Paris, France", initials: "SM", review: "Their expertise in Italian immigration law is unmatched. Made the whole process stress-free." },
                     { name: "Ahmed Hassan", location: "Cairo, Egypt", initials: "AH", review: "Very professional service. They handled my student visa application perfectly." },
                     { name: "Li Wei", location: "Beijing, China", initials: "LW", review: "Great experience working with E-Co-Fisco. They made the complex simple." },
-                    { name: "Anna Kowalski", location: "Warsaw, Poland", initials: "AK", review: "Fantastic support throughout my visa application. Would definitely recommend." },
-                    { name: "Raj Patel", location: "Mumbai, India", initials: "RP", review: "Their knowledge of Italian immigration procedures is impressive. Great service!" },
-                    { name: "Elena Popov", location: "Moscow, Russia", initials: "EP", review: "Very satisfied with their professional approach and successful outcome." },
-                    { name: "David Kim", location: "Seoul, Korea", initials: "DK", review: "Efficient and reliable service. Made my move to Italy much easier." },
-                    { name: "Luis Rodriguez", location: "Mexico City, Mexico", initials: "LR", review: "Excellent guidance throughout the entire process. Very happy with the results." },
-                    { name: "Sarah Johnson", location: "Sydney, Australia", initials: "SJ", review: "Professional team that delivers results. Highly recommended for immigration services." },
-                    { name: "Hans Mueller", location: "Berlin, Germany", initials: "HM", review: "Very thorough and professional approach. Great communication throughout." },
-                    { name: "Yuki Sato", location: "Osaka, Japan", initials: "YS", review: "Their expertise made my visa application process smooth and successful." },
-                    { name: "Mohamed Ali", location: "Dubai, UAE", initials: "MA", review: "Excellent service and support. Would definitely use their services again." }
+                    { name: "Anna Kowalski", location: "Warsaw, Poland", initials: "AK", review: "Fantastic support throughout my visa application. Would definitely recommend." }
                   ].map((review, index) => (
                     <div key={index} className="bg-[#eff6ff] rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow relative min-h-[300px]">
                       <div className="flex justify-center mb-4">
@@ -656,22 +646,14 @@
                       <p className="text-gray-700 text-sm text-center pb-8">{review.review}</p>
                       <p className="text-sm text-gray-500 text-center absolute bottom-6 left-0 right-0">
                         {[
-                          "2 years ago",
-                          "1 year ago", 
-                          "8 months ago",
-                          "6 months ago",
-                          "4 months ago",
                           "3 months ago",
-                          "5 months ago",
-                          "7 months ago",
-                          "1 year ago",
-                          "9 months ago",
-                          "2 years ago",
-                          "1 year ago",
-                          "6 months ago", 
-                          "8 months ago",
+                          "9 months ago", 
                           "4 months ago",
-                          "5 months ago"
+                          "7 months ago",
+                          "2 years ago",
+                          "11 months ago",
+                          "1 year ago",
+                          "7 months ago"
                         ][index]}
                       </p>
                     </div>
