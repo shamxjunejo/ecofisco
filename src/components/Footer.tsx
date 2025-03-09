@@ -35,8 +35,11 @@ export default function Footer() {
           <div className="flex flex-col items-center md:items-start">
             <h4 className="text-lg font-medium text-blue-800 mb-4">Contact Us</h4>
             <address className="not-italic text-gray-600 text-sm space-y-2">
-              <p>Viale P. Pietramellara 33</p>
-              <p>Bologna (BO), 40121</p>
+              <p>Khadija Zouine</p>
+              <p>Corso Giulio Cesare 118C</p>
+              <p>Turin, 10154</p>
+              <p>ecofisco7@gmail.com</p>
+              <p>+00393516737374</p>
               <p>VAT: 04050610361</p>
             </address>
           </div>
