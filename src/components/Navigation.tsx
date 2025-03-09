@@ -53,15 +53,14 @@ export default function Navigation({ currentPage, setCurrentPage }: NavigationPr
           <Users className="mr-2" size={20} />
           Who We Are
         </button>
+        <button 
+          onClick={() => {
+          }}
+          className="px-6 py-2 bg-white text-blue-900 rounded-full text-base font-normal hover:bg-blue-50 transition-colors"
+        >
+          Contact Us
+        </button>
       </div>
-      
-      <button 
-        onClick={() => {
-        }}
-        className="px-6 py-2 bg-white text-blue-900 rounded-full text-base font-normal hover:bg-blue-50 transition-colors"
-      >
-        Contact Us
-      </button>
     </div>
   );
 }

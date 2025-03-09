@@ -35,12 +35,10 @@ Our goal is to see the smile and happiness of people when, after months of strug
           <div className="flex justify-center ">
             {/* Team Member 1 */}
             <div className="bg-white rounded-lg shadow-md p-6 text-center max-w-sm ">
-              <div className="w-32 h-32 mx-auto rounded-full overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt="CEO"
-                  className="w-full h-full object-cover"
-                />
+              <div className="w-32 h-32 mx-auto rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
+                <svg className="h-24 w-24 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
               </div>
               <h3 className="mt-4 text-xl font-medium text-gray-900">Khadija Zouine</h3>
               <p className="text-gray-500">Law Expert</p>
