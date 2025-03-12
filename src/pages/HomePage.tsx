@@ -330,11 +330,7 @@ export default function HomePage() {
         </div>
       )
     }
-  ];
-
-
-
-
+  ];  
 
   return (
     <div className="max-w-7xl mx-auto py-4 sm:py-6 md:py-8 lg:py-10 px-4 sm:px-8 lg:px-16">
@@ -391,13 +387,6 @@ export default function HomePage() {
       </div>
 
 
-
-
-
-
-
-
-
       <div className="bg-transparent rounded-lg p-6 text-gray-700 mb-16 font-poppins flex flex-col items-center">
         <h2 className="text-3xl font-bold text-blue-500 text-center mb-4 max-w-3xl">Italy is 57th in terms of efficiency of Public Administration</h2>
         <h3 className="text-xl font-semibold text-center mt-4 max-w-2xl mx-auto">Why is it so difficult to communicate with public offices?</h3>
@@ -406,7 +395,7 @@ export default function HomePage() {
           <li className="mb-2">Language and cultural barriers.</li>
           <li className="mb-2">Very long waiting times.</li>
           <li className="mb-2">Ever-changing rules.</li>
-          <li className="mb-2">Need to interact with different offices, each with its own procedures.</li>
+          <li className="mb-2">Need to interact with different offices.</li>
           <li className="mb-2">A redundant amount of necessary documents.</li>
         </ul>
 
@@ -718,7 +707,7 @@ export default function HomePage() {
         </div>
 
         <div className="bg-transparent py-24">
-          <div className="relative w-full overflow-hidden mb-16">
+          <div className="relative w-full overflow-hidden">
 
           </div>
 

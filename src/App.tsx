@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import Navigation from './components/Navigation';
@@ -11,6 +11,7 @@ import ContactPage from './pages/ContactPage';
 import logo from "./assets/logo.png";
 
 function AppContent() {
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -45,7 +46,7 @@ function AppContent() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex md:items-center md:space-x-4">
-              <Navigation />
+              <Navigation setMobileMenuOpen={setMobileMenuOpen} />
             </div>
 
             {/* Mobile Navigation */}
@@ -59,12 +60,12 @@ function AppContent() {
                 </button>
               </div>
               <div className="flex justify-end w-full">
-                <a 
-                  href="/contact"
+                <button 
+                  onClick={() => navigate('/contact')}
                   className="inline-block px-4 py-1.5 bg-white text-blue-900 rounded-full text-sm font-medium hover:bg-blue-50 transition-all duration-300"
                 >
                   Contact Us
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -73,7 +74,7 @@ function AppContent() {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-blue-700">
-            <Navigation />
+            <Navigation setMobileMenuOpen={setMobileMenuOpen} />
           </div>
         )}
       </nav>
