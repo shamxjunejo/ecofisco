@@ -2,9 +2,6 @@ import { useState, useEffect } from 'react';
 import './textAnimation.css';
 import italy from "../assets/italy.png";
 import hero from "../assets/hero.jpg";
-import language from "../assets/language.png";
-import clock from "../assets/clock.png";
-import passport from "../assets/passport.png";
 
 
 
@@ -348,7 +345,7 @@ export default function HomePage() {
             alt="Italian Immigration Experts"
             className="absolute inset-0 w-full h-full object-cover rounded-xl"
           />
-          <div className="absolute inset-0 bg-gradient-to-l from-gray-900/70 to-blue-800/60 rounded-xl">
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/70 to-black-800/60 rounded-xl">
             <div className="p-4 sm:p-8 md:p-10 lg:p-12 max-w-3xl">
 
               {/* Title */}
@@ -377,13 +374,13 @@ export default function HomePage() {
                 <ElementorHeadline />
               </div>
 
-              <div className="absolute bottom-8 left-8">
+              <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
                 <button
                   onClick={() => {
-                    const element = document.querySelector('.relative.z-10');
+                    const element = document.querySelector('.relative.bg-blue-50');
                     element?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="inline-block px-4 sm:px-8 py-2 sm:py-3 bg-blue-600 text-white rounded-full text-base sm:text-lg font-semibold hover:bg-blue-700 transition-colors"
+                  className="inline-block px-4 sm:px-8 py-2 sm:py-3 bg-white text-blue-600 rounded-full text-base sm:text-lg font-semibold hover:bg-gray-100 transition-colors"
                 >
                   Start Here
                 </button>
@@ -422,15 +419,15 @@ export default function HomePage() {
       </div>
 
       {/* Tab Section */}
-      <div className="relative bg-blue-50 py-12 mb-12 rounded-[40px] mx-4">
+      <div className="relative bg-blue-50 py-12 mb-12 rounded-[40px] mx-4 border border-gray-300  ">
         <div className="absolute top-0 left-0 w-full overflow-hidden">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" className="h-16 w-full rounded-t-[40px]">
             <path className="fill-white" d="M1000,4.3V0H0v4.3C0.9,23.1,126.7,99.2,500,100S1000,22.7,1000,4.3z" />
           </svg>
         </div>
 
-        <div className="relative z-10 max-w-[95%] mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-600 mb-4">
+        <div className="relative z-10 max-w-[95%] mx-auto ">
+          <h2 className="text-3xl font-bold text-center text-blue-500 mb-4">
             Our Immigration Services
           </h2>
           <h3 className="text-xl text-center text-gray-700 mb-12">
@@ -459,23 +456,21 @@ export default function HomePage() {
       </div>
 
       {/* Card Section */}
-      <div className="bg-[#eff6ff] py-8 rounded-[40px] mb-12 mx-4">
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 py-8 rounded-[40px] mb-12 mx-4 border border-gray-300">
         <div className="max-w-[95%] mx-auto flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-items-center">
 
             {/* Card 1 */}
             <div className="p-4 rounded-[24px]">
               <div className="flex flex-col items-center">
-                <img
-                  src={clock}
-                  alt="Clock icon"
-                  className="w-8 h-8 mb-2 text-gray-700"
-                />
+                <svg className="w-8 h-8 mb-2 text-blue-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+                </svg>
                 <h3 className="text-lg font-semibold text-gray-700 text-center mb-1">
                   Stress-free documents
                 </h3>
                 <p className="text-gray-700 mb-4 font-poppins text-center">
-
                   Never-ending waits for your documents will be a thing of the past.
                 </p>
               </div>
@@ -484,11 +479,10 @@ export default function HomePage() {
             {/* Card 2 */}
             <div className="p-4 rounded-[24px]">
               <div className="flex flex-col items-center">
-                <img
-                  src={passport}
-                  alt="Passport icon"
-                  className="w-8 h-8 mb-2 text-gray-700"
-                />
+                <svg className="w-8 h-8 mb-2 text-blue-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M8 8h8M8 12h8M8 16h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
                 <h3 className="text-lg font-semibold text-gray-700 text-center mb-1">
                   At your side with embassies</h3>
                 <p className="text-gray-700 mb-4 font-poppins text-center">
@@ -498,13 +492,11 @@ export default function HomePage() {
             </div>
 
             {/* Card 3 */}
-            <div className="p-6 rounded-[24px]">
+            <div className="p-4 rounded-[24px]">
               <div className="flex flex-col items-center">
-                <img
-                  src={language}
-                  alt="Languages icon"
-                  className="w-8 h-8 mb-2 text-gray-700"
-                />
+                <svg className="w-8 h-8 mb-2 text-blue-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7l1.62-4.33L19.12 17h-3.24z" fill="currentColor"/>
+                </svg>
                 <h3 className="text-lg font-semibold text-gray-700 text-center mb-2">
                   Consulting in your language
                 </h3>
@@ -652,7 +644,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { name: "Akiko Tanaka", location: "Tokyo, Japan", initials: "AT", review: "E-Co FISCO made my visa application process incredibly smooth. Their expertise and professional guidance helped me navigate through complex Italian bureaucracy with ease." },
+              { name: "Akiko Tanaka", location: "Tokyo, Japan", initials: "AT", review: "E-Co FISCO made my visa application process incredibly smooth. Their expertise and professional guidance helped me." },
               { name: "Carlos Silva", location: "São Paulo, Brazil", initials: "CS", review: "Outstanding service! They helped me obtain my work visa in record time. Very professional and knowledgeable team." },
               { name: "Maria Garcia", location: "Madrid, Spain", initials: "MG", review: "The team at E-Co FISCO was incredibly helpful throughout my citizenship application process. Highly recommended!" },
               { name: "John Smith", location: "London, UK", initials: "JS", review: "Excellent support for my residency permit application. Clear communication and great results." },
@@ -661,7 +653,7 @@ export default function HomePage() {
               { name: "Li Wei", location: "Beijing, China", initials: "LW", review: "Great experience working with E-Co FISCO. They made the complex simple." },
               { name: "Anna Kowalski", location: "Warsaw, Poland", initials: "AK", review: "Fantastic support throughout my visa application. Would definitely recommend." }
             ].map((review, index) => (
-              <div key={index} className="bg-[#eff6ff] rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow relative min-h-[300px]">
+              <div key={index} className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border-2 border-gray-200 relative min-h-[300px]">
                 <div className="flex justify-center mb-4">
                   <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center">
                     <span className="text-sm text-white font-semibold">{review.initials}</span>
@@ -710,7 +702,7 @@ export default function HomePage() {
             <div>
               <a
                 href="#contact-form"
-                className="inline-block px-8 py-4 bg-white text-blue-600 rounded-full text-lg font-semibold hover:bg-blue-50 transition-colors hover:transform hover:translate-y-[-2px]"
+                className="inline-block px-6 py-3 bg-white text-blue-600 rounded-full text-lg font-semibold hover:bg-blue-50 transition-colors hover:transform hover:translate-y-[-2px] whitespace-nowrap"
               >
                 Contact us now
               </a>
@@ -720,7 +712,7 @@ export default function HomePage() {
       </div>
 
       {/* Why Choose Us Section */}
-      <div className="bg-transparent relative">
+      <div className="bg-transparent border border-gray-300 rounded-[40px] relative mt-16">
         <div className="absolute top-0 left-0 w-full overflow-hidden">
 
         </div>
@@ -733,11 +725,11 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12">
             {/* Why Not Choose Us */}
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Why You Should NOT Choose E-Co FISCO Immigration Specialists</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-1">Why You Should NOT Choose E-Co Fisco</h3>
               <p className="text-lg text-gray-600 mb-8">We can't help you if</p>
 
               <div className="space-y-4">
-                <details className="border border-gray-200 rounded-lg">
+                <details className="border border-gray-300 rounded-lg">
                   <summary className="cursor-pointer p-4 font-semibold flex justify-between items-center">
                     Looking for quick shortcuts?
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
@@ -747,7 +739,7 @@ export default function HomePage() {
                   </div>
                 </details>
 
-                <details className="border border-gray-200 rounded-lg">
+                <details className="border border-gray-300 rounded-lg">
                   <summary className="cursor-pointer p-4 font-semibold flex justify-between items-center">
                     You prefer a generic and impersonal service
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
@@ -757,7 +749,7 @@ export default function HomePage() {
                   </div>
                 </details>
 
-                <details className="border border-gray-200 rounded-lg">
+                <details className="border border-gray-300 rounded-lg">
                   <summary className="cursor-pointer p-4 font-semibold flex justify-between items-center">
                     You don't want to invest in quality and long-term results
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
@@ -771,11 +763,11 @@ export default function HomePage() {
 
             {/* Why Choose Us */}
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Why You Should Choose E-Co FISCO Immigration Specialists</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-1">Why You Should Choose E-Co Fisco</h3>
               <p className="text-lg text-gray-600 mb-8">We will fight for you if</p>
 
               <div className="space-y-4">
-                <details className="border border-gray-200 rounded-lg">
+                <details className="border border-gray-300 rounded-lg">
                   <summary className="cursor-pointer p-4 font-semibold flex justify-between items-center">
                     Do you want peace of mind by relying on experts?
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
@@ -785,7 +777,7 @@ export default function HomePage() {
                   </div>
                 </details>
 
-                <details className="border border-gray-200 rounded-lg">
+                <details className="border border-gray-300 rounded-lg">
                   <summary className="cursor-pointer p-4 font-semibold flex justify-between items-center">
                     You value your time and want to avoid costly mistakes
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
@@ -795,7 +787,7 @@ export default function HomePage() {
                   </div>
                 </details>
 
-                <details className="border border-gray-200 rounded-lg">
+                <details className="border border-gray-300 rounded-lg">
                   <summary className="cursor-pointer p-4 font-semibold flex justify-between items-center">
                     You seek precision and efficiency to achieve your goals
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
@@ -810,68 +802,155 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Contact Form Section */}
-      <div className="bg-blue-50 rounded-[40px] py-12 px-4 mx-4 border border-gray-300">
+
+       {/* Contact Form Section */}
+       <div className="bg-blue-600 rounded-[40px] mx-4 mt-8 border border-gray-300 max-w-7xl mx-auto">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
           {/* Left Column */}
-          <div className="bg-transparent p-8 rounded-[24px] contact-info-column text-left flex flex-col items-left justify-center">
-            <h2 className="text-3xl font-bold text-gray-600 mb-4">Contact a expert for foreigners</h2>
-            <p className="text-gray-600 mb-6">Our agency for foreigners is at your disposal for the most daily practices up to the most complex cases.</p>
+          <div className="bg-transparent p-8 rounded-[24px] contact-info-column text-center md:text-left flex flex-col items-start justify-center">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">Contact a expert for foreigners</h2>
+            <p className="text-sm sm:text-base text-white mb-6">Our agency for foreigners is at your disposal for the most daily practices up to the most complex cases.</p>
           </div>
 
           {/* Right Column - Contact Form */}
-          <div className="bg-white p-8 rounded-[24px] shadow-sm">
-            <form className="space-y-4">
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 md:rounded-tr-[39px] md:rounded-br-[39px] md:rounded-bl-[0px] rounded-br-[39px] rounded-bl-[39px]">
+          
+            <form action="https://formspree.io/f/mldjenqp" method="POST" className="space-y-4 p-8" onSubmit={(e) => {
+              e.preventDefault();
+              const form = e.target as HTMLFormElement;
+              fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                  'Accept': 'application/json'
+                }
+              }).then(response => {
+                if (response.ok) {
+                  const dialog = document.createElement('div');
+                  dialog.innerHTML = `
+                    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                      <div class="bg-white rounded-lg p-6 max-w-sm w-full">
+                        <div class="flex justify-center mb-4">
+                          <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                          </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-2">Massage</h3>
+                        <p class="text-gray-600 text-center mb-6">Thanks for your submission!<br />We'll be in touch with you shortly.</p>
+                        <button class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+                          OK
+                        </button>
+                      </div>
+                    </div>
+                  `;
+                  document.body.appendChild(dialog);
+                  dialog.querySelector('button')!.onclick = () => {
+                    dialog.remove();
+                  };
+                  form.reset();
+                } else {
+                  const dialog = document.createElement('div');
+                  dialog.innerHTML = `
+                    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                      <div class="bg-white rounded-lg p-6 max-w-sm w-full">
+                        <div class="flex justify-center mb-4">
+                          <svg class="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                          </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-2">Massage</h3>
+                        <p class="text-gray-600 text-center mb-6">Oops! There was a problem submitting your form</p>
+                        <button class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+                          OK
+                        </button>
+                      </div>
+                    </div>
+                  `;
+                  document.body.appendChild(dialog);
+                  dialog.querySelector('button')!.onclick = () => {
+                    dialog.remove();
+                  };
+                }
+              }).catch(_error => {
+                const dialog = document.createElement('div');
+                dialog.innerHTML = `
+                  <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div class="bg-white rounded-lg p-6 max-w-sm w-full">
+                      <div class="flex justify-center mb-4">
+                        <svg class="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                      </div>
+                      <h3 class="text-xl font-bold text-center mb-2">Massage</h3>
+                      <p class="text-gray-600 text-center mb-6">Oops! There was a problem submitting your form</p>
+                      <button class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+                        OK
+                      </button>
+                    </div>
+                  </div>
+                `;
+                document.body.appendChild(dialog);
+                  dialog.querySelector('button')!.onclick = () => {
+                    dialog.remove();
+                  };
+              });
+            }}>
               <div className="grid grid-cols-2 gap-4">
                 <input 
-                  type="text" 
+                  type="text"
+                  name="name" 
                   placeholder="Name*" 
                   required
-                  className="p-3 border border-gray-300 rounded-lg w-full"
+                  className="p-3 border border-gray-300 rounded-[40px] w-full bg-gray-50 text-sm"
                 />
                 <input 
-                  type="text" 
+                  type="text"
+                  name="surname" 
                   placeholder="Surname" 
                   required
-                  className="p-3 border border-gray-300 rounded-lg w-full"
+                  className="p-3 border border-gray-300 rounded-[40px] w-full bg-gray-50 text-sm"
                 />
               </div>
               
               <input 
-                type="email" 
+                type="email"
+                name="email" 
                 placeholder="E-mail*" 
                 required
-                className="p-3 border border-gray-300 rounded-lg w-full"
+                className="p-3 border border-gray-300 rounded-[40px] w-full bg-gray-50 text-sm"
               />
               
               <input 
-                type="text" 
+                type="text"
+                name="location" 
                 placeholder="Where are you writing to us from?" 
                 required
-                className="p-3 border border-gray-300 rounded-lg w-full"
+                className="p-3 border border-gray-300 rounded-[40px] w-full bg-gray-50 text-sm"
               />
               
               <textarea 
+                name="message"
                 placeholder="Message*" 
                 required
                 rows={3}
-                className="p-3 border border-gray-300 rounded-lg w-full"
+                className="p-3 border border-gray-300 rounded-[20px] w-full bg-gray-50 text-sm"
               ></textarea>
 
               <div className="flex items-start">
                 <input 
                   type="checkbox"
+                  name="privacy_accepted"
                   required
                   className="mt-1 mr-2"
                 />
-                <label className="text-sm text-gray-600">
+                <label className="text-xs sm:text-sm text-gray-600">
                   I confirm that I have read the <a href="#" className="text-blue-600 hover:underline">privacy policy</a>
                 </label>
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-3 px-6 rounded-full hover:bg-blue-700 transition-colors font-semibold"
+                className="w-full bg-blue-600 text-white py-3 px-6 rounded-[40px] hover:bg-blue-700 transition-colors font-semibold text-sm sm:text-base"
               >
                 SEND REQUEST
               </button>
@@ -879,6 +958,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-    </div>
+    
+      </div>
   );
 };

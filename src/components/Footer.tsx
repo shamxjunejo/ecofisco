@@ -1,5 +1,9 @@
-import { Facebook, Instagram, Youtube, Globe } from 'lucide-react';
 import it from "../assets/it.svg";
+import facebook from "../assets/facebook.png";
+import twitter from "../assets/twitter.png";
+import linkedin from "../assets/linkedin.png";
+import whatsapp from "../assets/whatsapp.png";
+import footer_l from "../assets/footer_l.png";
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-r from-blue-50 to-indigo-50 mt-16 border-t border-blue-100">
@@ -7,23 +11,26 @@ export default function Footer() {
         {/* Top Section with Logo and Social */}
         <div className="py-10 grid grid-cols-1 md:grid-cols-2 items-center gap-8">
           <div className="flex flex-col items-center md:items-start">
-            <h3 className="text-xl font-bold text-blue-800 mb-2">E-Co FISCO Immigration Specialists</h3>
+            <img src={footer_l} alt="Logo" className="h-32 w-auto" />
+            <div className="-mt-6 text-center md:text-left">
+              <p className="text-gray-600 mt-0">Immigration & Tax Consultant</p>
+            </div>
           </div>
           
           <div className="flex flex-col items-center md:items-end">
-            <p className="text-gray-700 mb-3 font-medium">Follow us</p>
+            <p className="text-gray-600 mb-3 font-medium">Follow us</p>
             <div className="flex space-x-5">
-              <a href="#" className="text-blue-600 hover:text-blue-800 transition-colors duration-200" aria-label="Facebook">
-                <Facebook size={24} className="hover:scale-110 transition-transform" />
+              <a href="#" className="text-blue-800 hover:text-blue-900 transition-colors duration-200" aria-label="Facebook">
+                <img src={facebook} alt="Facebook" className="w-6 h-6 hover:scale-110 transition-transform [filter:brightness(0)_saturate(100%)_invert(39%)_sepia(98%)_saturate(1900%)_hue-rotate(206deg)_brightness(97%)_contrast(95%)]" />
               </a>
-              <a href="#" className="text-blue-600 hover:text-blue-800 transition-colors duration-200" aria-label="Instagram">
-                <Instagram size={24} className="hover:scale-110 transition-transform" />
+              <a href="#" className="text-blue-800 hover:text-blue-900 transition-colors duration-200" aria-label="X (Twitter)">
+                <img src={twitter} alt="Twitter" className="w-6 h-6 hover:scale-110 transition-transform [filter:brightness(0)_saturate(100%)_invert(39%)_sepia(98%)_saturate(1900%)_hue-rotate(206deg)_brightness(97%)_contrast(95%)]" />
               </a>
-              <a href="#" className="text-blue-600 hover:text-blue-800 transition-colors duration-200" aria-label="YouTube">
-                <Youtube size={24} className="hover:scale-110 transition-transform" />
+              <a href="#" className="text-blue-800 hover:text-blue-900 transition-colors duration-200" aria-label="LinkedIn">
+                <img src={linkedin} alt="LinkedIn" className="w-6 h-6 hover:scale-110 transition-transform [filter:brightness(0)_saturate(100%)_invert(39%)_sepia(98%)_saturate(1900%)_hue-rotate(206deg)_brightness(97%)_contrast(95%)]" />
               </a>
-              <a href="#" className="text-blue-600 hover:text-blue-800 transition-colors duration-200" aria-label="Website">
-                <Globe size={24} className="hover:scale-110 transition-transform" />
+              <a href="https://wa.me/393516737374" target="_blank" rel="noopener noreferrer" className="text-blue-800 hover:text-blue-900 transition-colors duration-200" aria-label="WhatsApp">
+                <img src={whatsapp} alt="WhatsApp" className="w-6 h-6 hover:scale-110 transition-transform [filter:brightness(0)_saturate(100%)_invert(39%)_sepia(98%)_saturate(1900%)_hue-rotate(206deg)_brightness(97%)_contrast(95%)]" />
               </a>
             </div>
           </div>
@@ -38,9 +45,7 @@ export default function Footer() {
               <p>Khadija Zouine</p>
               <p>Corso Giulio Cesare 118C</p>
               <p>Turin, 10154</p>
-              <p>ecofisco7@gmail.com</p>
-              <p>+00393516737374</p>
-              <p>VAT: 04050610361</p>
+              <p>VAT: 12744510012</p>
             </address>
           </div>
           
@@ -77,7 +82,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="py-4 border-t border-blue-100 text-center">
           <p className="text-xs text-gray-500">
-            © {new Date().getFullYear()} E-Co FISCO Immigration Specialists. All rights reserved.
+            © {new Date().getFullYear()} E-Co Fisco Immigration & Tax Consultant. All rights reserved.
           </p>
         </div>
       </div>

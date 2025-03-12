@@ -1,44 +1,50 @@
-import { useState } from 'react';
-import { Menu, X, Home, Briefcase, BookOpen, Users } from 'lucide-react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import ServicesPage from './pages/ServicesPage';
 import GuidesPage from './pages/GuidesPage';
 import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import logo from "./assets/logo.png";
 
-function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+function AppContent() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const renderPage = () => {
-    switch (currentPage) {
-      case 'home':
-        return <HomePage />;
-      case 'services':
-        return <ServicesPage />;
-      case 'guides':
-        return <GuidesPage />;
-      case 'about':
-        return <AboutPage />;
-      default:
-        return <HomePage />;
-    }
+    return <HomePage />;
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       {/* Navigation */}
-      <nav className="bg-blue-600 shadow-lg">
+      <nav className={`${scrolled ? 'bg-blue-600/40' : 'bg-blue-600'} backdrop-blur-sm  md:sticky top-0 z-50`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <span className="text-white text-xl font-bold">E-Co FISCO</span>
+              <div className="flex-shrink-0 md:ml-6">
+                <a href="/" className="flex items-center">
+                  <img 
+                    src={logo} 
+                    alt="E-Co Fisco" 
+                    className="h-12 w-auto transition-transform duration-300 hover:scale-105"
+                  />
+                </a>
               </div>
             </div>
             <div className="hidden md:block">
-              <Navigation currentPage={currentPage} setCurrentPage={setCurrentPage} />
+              <Navigation />
             </div>
             <div className="md:hidden">
               <button
@@ -53,74 +59,33 @@ function App() {
         {/* Mobile menu */}
         {mobileMenuOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <button
-                onClick={() => {
-                  setCurrentPage('home');
-                  setMobileMenuOpen(false);
-                }}
-                className={`${
-                  currentPage === 'home'
-                    ? 'bg-blue-700 text-white'
-                    : 'text-white hover:bg-blue-500'
-                } block px-3 py-2 rounded-md text-base font-medium w-full text-left`}
-              >
-                <Home className="inline-block mr-2" size={20} />
-                Home
-              </button>
-              <button
-                onClick={() => {
-                  setCurrentPage('services');
-                  setMobileMenuOpen(false);
-                }}
-                className={`${
-                  currentPage === 'services'
-                    ? 'bg-blue-700 text-white'
-                    : 'text-white hover:bg-blue-500'
-                } block px-3 py-2 rounded-md text-base font-medium w-full text-left`}
-              >
-                <Briefcase className="inline-block mr-2" size={20} />
-                Our Services
-              </button>
-              <button
-                onClick={() => {
-                  setCurrentPage('guides');
-                  setMobileMenuOpen(false);
-                }}
-                className={`${
-                  currentPage === 'guides'
-                    ? 'bg-blue-700 text-white'
-                    : 'text-white hover:bg-blue-500'
-                } block px-3 py-2 rounded-md text-base font-medium w-full text-left`}
-              >
-                <BookOpen className="inline-block mr-2" size={20} />
-                Official Guides
-              </button>
-              <button
-                onClick={() => {
-                  setCurrentPage('about');
-                  setMobileMenuOpen(false);
-                }}
-                className={`${
-                  currentPage === 'about'
-                    ? 'bg-blue-700 text-white'
-                    : 'text-white hover:bg-blue-500'
-                } block px-3 py-2 rounded-md text-base font-medium w-full text-left`}
-              >
-                <Users className="inline-block mr-2" size={20} />
-                Who We Are
-              </button>
-            </div>
+            <Navigation />
           </div>
         )}
       </nav>
 
       {/* Main content */}
-      <main className="flex-grow">{renderPage()}</main>
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={renderPage()} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/guide" element={<GuidesPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
 
-      {/* Footer */}
       <Footer />
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
   );
 }
 
