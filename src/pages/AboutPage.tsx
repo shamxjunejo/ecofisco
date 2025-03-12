@@ -15,21 +15,21 @@ export default function AboutPage() {
         <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl border border-gray-200 p-8 shadow-sm">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h2>
           <p className="text-gray-600 text-justify leading-relaxed">
-            Growing up among many foreign kids, I was lucky enough to get to know cultures, thoughts, flavors and habits different from the Italian reality. But I also had the opportunity to see the absurd difficulties that a foreigner has to face to arrive in Italy and have the documents in order.
+Growing up among many foreign kids, I was lucky enough to get to know cultures, thoughts, flavors and habits different from the Italian reality. But I also had the opportunity to see the absurd difficulties that a foreigner has to face to arrive in Italy and have the documents in order.
           </p>
           <p className="text-gray-600 text-justify leading-relaxed mt-4">
-            I can't stand injustice, so I decided to do my part to simplify the lives of foreigners who want to travel or move to Italy and those who are already here and fight every day with public administrations to avoid losing their right to residency.
+I can't stand injustice, so I decided to do my part to simplify the lives of foreigners who want to travel or move to Italy and those who are already here and fight every day with public administrations to avoid losing their right to residency.
           </p>
           <p className="text-gray-600 text-justify leading-relaxed mt-4">
-            Over the years I have had the pleasure of helping hundreds of people from all over the world and, thanks to the help of a team of prepared and courageous people, we have achieved great goals.
+Over the years I have had the pleasure of helping hundreds of people from all over the world and, thanks to the help of a team of prepared and courageous people, we have achieved great goals.
           </p>
           <p className="text-gray-600 text-justify leading-relaxed mt-4">
-            To accommodate our clients, the team has expanded to include lawyers for foreigners specialized in immigration law and native speakers of all major foreign languages, particularly experienced in this area.
+To accommodate our clients, the team has expanded to include lawyers for foreigners specialized in immigration law and native speakers of all major foreign languages, particularly experienced in this area.
           </p>
           <p className="text-gray-600 text-justify leading-relaxed mt-4">
-            Our goal is to see the smile and happiness of people when, after months of struggle and suffering, they finally manage to see their rights recognized and have their documents. Every day we work hard for this.
-          </p>
-        </div>
+Our goal is to see the smile and happiness of people when, after months of struggle and suffering, they finally manage to see their rights recognized and have their documents. Every day we work hard for this.
+            </p>
+          </div>
 
         {/* Values Section */}
         <div className="bg-gradient-to-l from-indigo-50 to-purple-50 rounded-2xl border border-gray-200 p-8 shadow-sm h-full">
@@ -96,14 +96,14 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
+          </div>
         </div>
-      </div>
 
-      {/* Team Section */}
-      <div className="mt-16">
+        {/* Team Section */}
+        <div className="mt-16">
         <h2 className="text-2xl font-bold text-gray-700 text-center mb-8">
-          Our Leadership Team
-        </h2>
+            Our Leadership Team
+          </h2>
         <div className="flex flex-wrap justify-center gap-8">
           {/* Team Member Card - Keeping the original design */}
           <div className="max-w-sm overflow-hidden border border-gray-300 rounded-lg shadow-md">
@@ -115,17 +115,17 @@ export default function AboutPage() {
                   <img 
                     src="/path-to-profile-image.jpg" 
                     alt="Team Member" 
-                    className="w-full h-full object-cover"
+                  className="w-full h-full object-cover"
                     onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
                       const target = e.target as HTMLImageElement;
                       target.onerror = null;
                       target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23CBD5E0'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/%3E%3C/svg%3E";
                     }}
-                  />
+                />
                 </div>
               </div>
             </div>
-            
+
             {/* Card Body */}
             <div className="pt-12 pb-6 px-4 text-center">
               {/* Name and Title */}
@@ -363,7 +363,7 @@ export default function AboutPage() {
                 <label className="text-xs sm:text-sm text-gray-600">
                   I confirm that I have read the <a href="#" className="text-blue-600 hover:underline">privacy policy</a>
                 </label>
-              </div>
+            </div>
 
               <button
                 type="submit"
