@@ -10,10 +10,10 @@ export default function ContactPage() {
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">
+        <h1 className="text-3xl font-bold text-gray-700 sm:text-4xl">
           Contacts
         </h1>
-        <h2 className="mt-3 text-2xl font-semibold text-gray-800">
+        <h2 className="mt-3 text-2xl font-semibold text-gray-600">
           Looking for assistance for foreigners?
         </h2>
         <p className="mt-3 max-w-2xl mx-auto text-gray-600 text-lg">

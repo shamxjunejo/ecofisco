@@ -1,3 +1,7 @@
+import { collection } from "firebase/firestore";
+import { db } from "../firebase/config";
+import { addDoc } from "firebase/firestore";
+
 export default function AboutPage() {
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -221,7 +225,7 @@ Our goal is to see the smile and happiness of people when, after months of strug
       </div>
 
       {/* Contact Form Section */}
-      <div className="bg-blue-600 rounded-[40px] mx-4 mt-8 border border-gray-300">
+      <div className="bg-blue-600 rounded-[40px] mx-4 mt-8 border border-gray-300 max-w-7xl mx-auto">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
           {/* Left Column */}
           <div className="bg-transparent p-8 rounded-[24px] contact-info-column text-center md:text-left flex flex-col items-start justify-center">
@@ -231,130 +235,115 @@ Our goal is to see the smile and happiness of people when, after months of strug
 
           {/* Right Column - Contact Form */}
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 md:rounded-tr-[39px] md:rounded-br-[39px] md:rounded-bl-[0px] rounded-br-[39px] rounded-bl-[39px]">
-          
-            <form action="https://formspree.io/f/mldjenqp" method="POST" className="space-y-4 p-8" onSubmit={(e) => {
+
+            <form className="space-y-4 p-8" onSubmit={async (e) => {
               e.preventDefault();
               const form = e.target as HTMLFormElement;
-              fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: {
-                  'Accept': 'application/json'
-                }
-              }).then(response => {
-                if (response.ok) {
-                  const dialog = document.createElement('div');
-                  dialog.innerHTML = `
-                    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                      <div class="bg-white rounded-lg p-6 max-w-sm w-full">
-                        <div class="flex justify-center mb-4">
-                          <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                          </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-center mb-2">Massage</h3>
-                        <p class="text-gray-600 text-center mb-6">Thanks for your submission!<br />We'll be in touch with you shortly.</p>
-                        <button class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
-                          OK
-                        </button>
-                      </div>
-                    </div>
-                  `;
-                  document.body.appendChild(dialog);
-                  dialog.querySelector('button')!.onclick = () => {
-                    dialog.remove();
-                  };
-                  form.reset();
-                } else {
-                  const dialog = document.createElement('div');
-                  dialog.innerHTML = `
-                    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                      <div class="bg-white rounded-lg p-6 max-w-sm w-full">
-                        <div class="flex justify-center mb-4">
-                          <svg class="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                          </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-center mb-2">Massage</h3>
-                        <p class="text-gray-600 text-center mb-6">Oops! There was a problem submitting your form</p>
-                        <button class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
-                          OK
-                        </button>
-                      </div>
-                    </div>
-                  `;
-                  document.body.appendChild(dialog);
-                  dialog.querySelector('button')!.onclick = () => {
-                    dialog.remove();
-                  };
-                }
-              }).catch(_error => {
+              const formData = new FormData(form);
+
+              try {
+                
+
+                await addDoc(collection(db, "contacts"), {
+                  name: formData.get('name'),
+                  surname: formData.get('surname'),
+                  email: formData.get('email'),
+                  location: formData.get('location'),
+                  message: formData.get('message'),
+                  date: new Date().toISOString(),
+                  privacyAccepted: formData.get('privacy_accepted') === 'on'
+                });
+
                 const dialog = document.createElement('div');
                 dialog.innerHTML = `
-                  <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                    <div class="bg-white rounded-lg p-6 max-w-sm w-full">
-                      <div class="flex justify-center mb-4">
-                        <svg class="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                      </div>
-                      <h3 class="text-xl font-bold text-center mb-2">Massage</h3>
-                      <p class="text-gray-600 text-center mb-6">Oops! There was a problem submitting your form</p>
-                      <button class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
-                        OK
-                      </button>
-                    </div>
-                  </div>
-                `;
+          <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg p-6 max-w-sm w-full">
+              <div class="flex justify-center mb-4">
+                <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-center mb-2">Message</h3>
+              <p class="text-gray-600 text-center mb-6">Thanks for your submission!<br />We'll be in touch with you shortly.</p>
+              <button class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+                OK
+              </button>
+            </div>
+          </div>
+        `;
                 document.body.appendChild(dialog);
-                  dialog.querySelector('button')!.onclick = () => {
-                    dialog.remove();
-                  };
-              });
+                dialog.querySelector('button')!.onclick = () => {
+                  dialog.remove();
+                };
+                form.reset();
+              } catch (error) {
+                console.error("Error submitting form:", error);
+                const dialog = document.createElement('div');
+                dialog.innerHTML = `
+          <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg p-6 max-w-sm w-full">
+              <div class="flex justify-center mb-4">
+                <svg class="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-center mb-2">Message</h3>
+              <p class="text-gray-600 text-center mb-6">Oops! There was a problem submitting your form</p>
+              <button class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+                OK
+              </button>
+            </div>
+          </div>
+        `;
+                document.body.appendChild(dialog);
+                dialog.querySelector('button')!.onclick = () => {
+                  dialog.remove();
+                };
+              }
             }}>
               <div className="grid grid-cols-2 gap-4">
-                <input 
+                <input
                   type="text"
-                  name="name" 
-                  placeholder="Name*" 
+                  name="name"
+                  placeholder="Name*"
                   required
                   className="p-3 border border-gray-300 rounded-[40px] w-full bg-gray-50 text-sm"
                 />
-                <input 
+                <input
                   type="text"
-                  name="surname" 
-                  placeholder="Surname" 
+                  name="surname"
+                  placeholder="Surname"
                   required
                   className="p-3 border border-gray-300 rounded-[40px] w-full bg-gray-50 text-sm"
                 />
               </div>
-              
-              <input 
+
+              <input
                 type="email"
-                name="email" 
-                placeholder="E-mail*" 
+                name="email"
+                placeholder="E-mail*"
                 required
                 className="p-3 border border-gray-300 rounded-[40px] w-full bg-gray-50 text-sm"
               />
-              
-              <input 
+
+              <input
                 type="text"
-                name="location" 
-                placeholder="Where are you writing to us from?" 
+                name="location"
+                placeholder="Where are you writing to us from?"
                 required
                 className="p-3 border border-gray-300 rounded-[40px] w-full bg-gray-50 text-sm"
               />
-              
-              <textarea 
+
+              <textarea
                 name="message"
-                placeholder="Message*" 
+                placeholder="Message*"
                 required
                 rows={3}
                 className="p-3 border border-gray-300 rounded-[20px] w-full bg-gray-50 text-sm"
               ></textarea>
 
               <div className="flex items-start">
-                <input 
+                <input
                   type="checkbox"
                   name="privacy_accepted"
                   required
@@ -363,7 +352,7 @@ Our goal is to see the smile and happiness of people when, after months of strug
                 <label className="text-xs sm:text-sm text-gray-600">
                   I confirm that I have read the <a href="#" className="text-blue-600 hover:underline">privacy policy</a>
                 </label>
-            </div>
+              </div>
 
               <button
                 type="submit"
