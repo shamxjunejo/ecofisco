@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { HelmetProvider } from 'react-helmet-async';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -98,9 +99,11 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </HelmetProvider>
   );
 }
 
