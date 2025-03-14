@@ -522,11 +522,22 @@ export default function HomePage() {
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mb-12">
               <div className="text-center">
+                <h3 className="text-xl font-semibold text-blue-900 mb-4">Italy</h3>
+                <div className="rounded-[24px] overflow-hidden flex justify-center">
+                  <img
+                    src={italy}
+                    alt="Italian Immigration Expert in Italy"
+                    className="w-[35%] border border-gray-500 rounded-[100px]"
+                  />
+                </div>
+              </div>
+
+              <div className="text-center">
                 <h3 className="text-xl font-semibold text-blue-900 mb-4">Spain</h3>
                 <div className="rounded-[24px] overflow-hidden flex justify-center">
                   <img
                     src={italy}
-                    alt="Spanish Lawyer in Italy"
+                    alt="Spanish Immigration Expert in Italy"
                     className="w-[35%] border border-gray-500 rounded-[100px]"
                   />
                 </div>
@@ -537,18 +548,7 @@ export default function HomePage() {
                 <div className="rounded-[24px] overflow-hidden flex justify-center">
                   <img
                     src={italy}
-                    alt="English Lawyer in Italy"
-                    className="w-[35%] border border-gray-500 rounded-[100px]"
-                  />
-                </div>
-              </div>
-
-              <div className="text-center">
-                <h3 className="text-xl font-semibold text-blue-900 mb-4">Pakistan</h3>
-                <div className="rounded-[24px] overflow-hidden flex justify-center">
-                  <img
-                    src={italy}
-                    alt="Pakistani Lawyer in Italy"
+                    alt="English Immigration Expert in Italy"
                     className="w-[35%] border border-gray-500 rounded-[100px]"
                   />
                 </div>
@@ -559,29 +559,7 @@ export default function HomePage() {
                 <div className="rounded-[24px] overflow-hidden flex justify-center">
                   <img
                     src={italy}
-                    alt="Moroccan Lawyer in Italy"
-                    className="w-[35%] border border-gray-500 rounded-[100px]"
-                  />
-                </div>
-              </div>
-
-              <div className="text-center">
-                <h3 className="text-xl font-semibold text-blue-900 mb-4">Portugal</h3>
-                <div className="rounded-[24px] overflow-hidden flex justify-center">
-                  <img
-                    src={italy}
-                    alt="Portuguese Lawyer in Italy"
-                    className="w-[35%] border border-gray-500 rounded-[100px]"
-                  />
-                </div>
-              </div>
-
-              <div className="text-center">
-                <h3 className="text-xl font-semibold text-blue-900 mb-4">India</h3>
-                <div className="rounded-[24px] overflow-hidden flex justify-center">
-                  <img
-                    src={italy}
-                    alt="Indian Lawyer in Italy"
+                    alt="Moroccan Immigration Expert in Italy"
                     className="w-[35%] border border-gray-500 rounded-[100px]"
                   />
                 </div>
@@ -592,33 +570,22 @@ export default function HomePage() {
                 <div className="rounded-[24px] overflow-hidden flex justify-center">
                   <img
                     src={italy}
-                    alt="French lawyer in Italy"
+                    alt="French Immigration Expert in Italy"
                     className="w-[35%] border border-gray-500 rounded-[100px]"
                   />
                 </div>
               </div>
 
               <div className="text-center">
-                <h3 className="text-xl font-semibold text-blue-900 mb-4">China</h3>
-                <div className="rounded-[24px] overflow-hidden flex justify-center">
-                  <img
-                    src={italy}
-                    alt="Chinese Lawyer in Italy"
-                    className="w-[35%] border border-gray-500 rounded-[100px]"
-                  />
-                </div>
-              </div>
-
-              <div className="text-center hidden md:block">
                 <h3 className="text-xl font-semibold text-blue-900 mb-4">Bangladesh</h3>
                 <div className="rounded-[24px] overflow-hidden flex justify-center">
                   <img
                     src={italy}
+                    alt="Bangladeshi Immigration Expert in Italy"
                     className="w-[35%] border border-gray-500 rounded-[100px]"
                   />
                 </div>
               </div>
-
 
             </div>
           </div>
