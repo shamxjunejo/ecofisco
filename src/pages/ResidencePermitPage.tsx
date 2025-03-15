@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import guideImage from "../assets/guide.jpg";
 import SEO from '../components/SEO';
 import '../styles/flip-card.css';

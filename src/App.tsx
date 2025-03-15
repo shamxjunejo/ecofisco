@@ -10,6 +10,7 @@ import GuidesPage from './pages/GuidesPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import ResidencePermitPage from './pages/ResidencePermitPage';
+import AppointmentBooking from './pages/AppointmentBooking';
 import logo from "./assets/logo.png";
 
 function AppContent() {
@@ -90,6 +91,7 @@ function AppContent() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/residence-permit-request" element={<ResidencePermitPage />} />
+          <Route path="/book-appointment" element={<AppointmentBooking />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

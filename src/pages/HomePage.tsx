@@ -671,10 +671,10 @@ export default function HomePage() {
               </div>
               <div>
                 <a
-                  href="#contact-form"
+                  href="/book-appointment"
                   className="inline-block px-6 py-3 bg-white text-blue-600 rounded-full text-lg font-semibold hover:bg-blue-50 transition-colors hover:transform hover:translate-y-[-2px] whitespace-nowrap"
                 >
-                  Contact us now
+                  Book an Appointment
                 </a>
               </div>
             </div>
