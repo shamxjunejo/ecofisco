@@ -5,6 +5,7 @@ import hero from "../assets/hero.jpg";
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import SEO from '../components/SEO';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -67,6 +68,7 @@ interface TabContent {
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState('residence');
+  const navigate = useNavigate();
 
   const tabs: TabContent[] = [
     {
@@ -82,7 +84,10 @@ export default function HomePage() {
                 We assist you in the first application for a residence permit, residence card and long-term residence permit.
               </p>
             </div>
-            <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors mt-auto">
+            <button 
+              onClick={() => navigate('/residence-permit-request')}
+              className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors mt-auto"
+            >
               Find out more
             </button>
           </div>
