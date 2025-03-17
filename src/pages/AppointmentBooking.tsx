@@ -144,248 +144,236 @@ const AppointmentBooking: React.FC = () => {
     };
 
     return (
-       
-<div className="min-h-screen font-poppins">
-  <div className="max-w-6xl mx-auto p-4">
-    <div className="rounded-xl mt-8 overflow-hidden flex flex-col md:flex-row border border-gray-200">
-      
-      {/* Left Column - Information */}
-      <div className="md:w-1/4 bg-gray-50 p-5 border-r border-gray-200">
-        <div className="sticky top-4">
-          <h1 className="text-lg font-bold text-blue-600">Khadija Zouine</h1>
-          <h3 className="font-medium text-gray-600 text-sm mb-2">Immigration & Tax Consultant</h3>
-          <div className="border-t border-gray-200 my-3"></div>
-          
-          <h2 className="text-base font-semibold text-gray-800">Free Appointment</h2>
-          <div className="flex items-center mt-1 text-gray-500 text-sm">
-              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>30 min</span>
-          </div>
+        <div className="min-h-screen font-poppins bg-gray-50 py-6">
+            <div className="max-w-5xl mx-auto px-4">
+                <div className="rounded-xl overflow-hidden flex flex-col md:flex-row border border-gray-200 shadow-sm bg-white">
+                    {/* Left Column - Information */}
+                    <div className="md:w-1/4 bg-gray-50 p-6 border-r border-gray-200">
+                        <div className="flex flex-col h-full">
+                            <div>
+                                <h1 className="text-xl font-bold text-blue-700 tracking-wide">Khadija Zouine</h1>
+                                <h3 className="font-medium text-gray-500 text-sm mb-3">Immigration & Tax Consultant</h3>
+                                <div className="border-t border-gray-200 my-4"></div>
 
-          {step === 2 && selectedTime && (
-              <div className="mt-4 bg-white p-3 rounded-md border border-gray-200 shadow-sm">
-                  <div className="flex items-center text-gray-600 text-sm">
-                      <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <span>
-                          {selectedTime} - {format(addMinutes(new Date(selectedDate.setHours(parseInt(selectedTime.split(':')[0]), parseInt(selectedTime.split(' ')[0].split(':')[1]))), 30), 'h:mm a')}, {format(selectedDate, 'EEEE, MMMM d, yyyy')}
-                      </span>
-                  </div>
-                  <div className="flex items-center text-gray-600 text-sm mt-1">
-                      <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
-                      </svg>
-                      <span>Pakistan, Maldives Time</span>
-                  </div>
-              </div>
-          )}
+                                <h2 className="text-lg font-semibold text-gray-800 mb-2">Free Appointment</h2>
+                                <div className="flex items-center text-gray-600 text-sm">
+                                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>30 minutes</span>
+                                </div>
+                            </div>
 
-          <div className="mt-4">
-              <p className="text-gray-800 text-sm">
-                  <span className="font-semibold">Do you have questions about our services?</span>
-              </p>
+                            {step === 2 && selectedTime && (
+                                <div className="mt-6 bg-white p-4 rounded-md border border-gray-200 shadow-sm">
+                                    <div className="flex items-center text-gray-700 text-sm mb-2">
+                                        <svg className="w-4 h-4 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        <span className="font-medium">Selected Time:</span>
+                                    </div>
+                                    <div className="pl-6 text-gray-800">
+                                        <p className="text-sm mb-1">{selectedTime} - {format(addMinutes(new Date(selectedDate.setHours(parseInt(selectedTime.split(':')[0]), parseInt(selectedTime.split(' ')[0].split(':')[1]))), 30), 'h:mm a')}</p>
+                                        <p className="text-sm">{format(selectedDate, 'EEEE, MMMM d, yyyy')}</p>
+                                    </div>
+                                   
+                                </div>
+                            )}
 
-              <p className="mt-3 text-sm text-gray-600">
-                  Book a free 30-minute <span className="text-blue-600 font-medium">information call</span> with us!
-              </p>
-          </div>
+                            <div className="mt-auto">
+                                <div className="mt-6 bg-blue-50 p-4 rounded-md border border-blue-100">
+                                    <p className="text-gray-800 text-sm mb-2">
+                                        <span className="font-semibold">Do you have questions about our services?</span>
+                                    </p>
+                                    <p className="text-sm text-gray-700">
+                                        Book a free 30-minute <span className="text-blue-700 font-medium">information call</span> with us!
+                                    </p>
+                                </div>
 
-          <div className="border-t border-gray-200 my-4"></div>
+                                <div className="border-t border-gray-200 my-4"></div>
 
-          <div className="mt-4">
-              <h3 className="font-medium text-gray-800 text-sm mb-2">What to expect</h3>
-              <ul className="space-y-2 text-gray-600 text-sm">
-                  <li className="flex items-start">
-                      <svg className="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span>Free consultation to understand your needs</span>
-                  </li>
-                  <li className="flex items-start">
-                      <svg className="w-4 h-4 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span>Overview of our services and how we can help</span>
-                  </li>
-              </ul>
-          </div>
-        </div>
-      </div>
+                                <p className="text-sm text-gray-600 mb-2">
+                                    We'll discuss your needs and determine how we can best assist you.
+                                </p>
 
-      {/* Middle Column - Calendar */}
-      <div className="md:w-5/12 bg-white p-4">
-        {step === 1 && (
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3">Select a Date</h3>
+                                <p className="text-sm text-gray-600">
+                                    After our call, we can schedule a follow-up consultation if needed.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-            {/* Calendar */}
-            <div className="mb-4 border border-gray-100 rounded-lg p-3 shadow-sm">
-              <div className="flex justify-between items-center mb-3">
-                <button
-                  onClick={() => navigateMonth('prev')}
-                  className="p-1 rounded-full hover:bg-indigo-50 transition-colors duration-200 text-gray-600 hover:text-indigo-600"
-                >
-                  <ChevronLeftIcon className="w-4 h-4" />
-                </button>
-                <h3 className="font-medium text-sm text-gray-800">{currentMonth}</h3>
-                <button
-                  onClick={() => navigateMonth('next')}
-                  className="p-1 rounded-full hover:bg-indigo-50 transition-colors duration-200 text-gray-600 hover:text-indigo-600"
-                >
-                  <ChevronRightIcon className="w-4 h-4" />
-                </button>
-              </div>
+                    {/* Main Content Area */}
+                    <div className="md:w-3/4 flex flex-col md:flex-row">
+                        {step === 1 && (
+                            <>
+                                {/* Calendar Column */}
+                                <div className="w-full md:w-1/2 p-6 border-b md:border-b-0 md:border-r border-gray-200">
+                                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Select a Date</h3>
+                                    <div className="text-xs text-gray-600 mb-3">
+                                        <p>Available days: Wednesdays and Saturdays</p>
+                                    </div>
 
-              <div className="grid grid-cols-7 gap-1">
-                {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(day => (
-                  <div key={day} className="text-center text-xs font-medium text-gray-500 py-1">
-                    {day}
-                  </div>
-                ))}
+                                    {/* Calendar */}
+                                    <div className="border border-gray-200 rounded-lg p-4 shadow-sm bg-white h-[400px] flex flex-col">
+                                        <div className="flex justify-between items-center mb-4">
+                                            <button
+                                                onClick={() => navigateMonth('prev')}
+                                                className="p-2 rounded-full hover:bg-gray-100 transition-colors text-gray-600"
+                                            >
+                                                <ChevronLeftIcon className="w-5 h-5" />
+                                            </button>
+                                            <h3 className="font-semibold text-gray-800">{currentMonth}</h3>
+                                            <button
+                                                onClick={() => navigateMonth('next')}
+                                                className="p-2 rounded-full hover:bg-gray-100 transition-colors text-gray-600"
+                                            >
+                                                <ChevronRightIcon className="w-5 h-5" />
+                                            </button>
+                                        </div>
 
-                {generateCalendarDays().map((day, index) => {
-                  const dayOfWeek = day.date.getDay();
-                  const isAvailableDay = dayOfWeek === 3 || dayOfWeek === 6; // Wednesday (3) or Saturday (6)
-                  const isSelected = format(day.date, 'yyyy-MM-dd') === format(selectedDate, 'yyyy-MM-dd');
-                  const isPast = day.date < new Date();
-                  const isDisabled = !day.isCurrentMonth || isPast || !isAvailableDay;
+                                        <div className="grid grid-cols-7 flex-1 gap-1">
+                                            {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(day => (
+                                                <div key={day} className="text-center text-xs font-semibold text-gray-600 pb-2">
+                                                    {day}
+                                                </div>
+                                            ))}
 
-                  return (
-                    <button
-                      key={index}
-                      onClick={() => !isDisabled ? setSelectedDate(day.date) : null}
-                      disabled={isDisabled}
-                      className={`
-                        h-7 w-7 flex items-center justify-center rounded-full text-xs transition-all duration-200
-                        ${!day.isCurrentMonth ? 'text-gray-300' : ''}
-                        ${isPast ? 'cursor-not-allowed text-gray-300' : ''}
-                        ${!isAvailableDay && day.isCurrentMonth ? 'text-gray-400' : ''}
-                        ${isSelected ? 'bg-blue-600 text-white shadow-sm' : ''}
-                        ${!isDisabled && !isSelected ? 'hover:bg-indigo-100 hover:text-indigo-700' : ''}
-                      `}
-                    >
-                      <span className={`${isAvailableDay && !isDisabled && !isSelected ? 'relative' : ''}`}>
-                        {format(day.date, 'd')}
-                        {isAvailableDay && !isDisabled && !isSelected && (
-                          <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-indigo-500 rounded-full"></span>
+                                            {generateCalendarDays().map((day, index) => {
+                                                const dayOfWeek = day.date.getDay();
+                                                const isAvailableDay = dayOfWeek === 3 || dayOfWeek === 6; // Wednesday (3) or Saturday (6)
+                                                const isSelected = format(day.date, 'yyyy-MM-dd') === format(selectedDate, 'yyyy-MM-dd');
+                                                const isPast = day.date < new Date();
+                                                const isDisabled = !day.isCurrentMonth || isPast || !isAvailableDay;
+
+                                                return (
+                                                    <button
+                                                        key={index}
+                                                        onClick={() => !isDisabled ? setSelectedDate(day.date) : null}
+                                                        disabled={isDisabled}
+                                                        className={`
+       aspect-square flex items-center justify-center rounded-full text-sm transition-all duration-200
+       ${!day.isCurrentMonth ? 'text-gray-300' : ''}
+       ${isPast ? 'cursor-not-allowed text-gray-300' : ''}
+       ${!isAvailableDay && day.isCurrentMonth ? 'text-gray-400' : ''}
+       ${isSelected ? 'bg-blue-600 text-white font-medium shadow-sm' : ''}
+       ${!isDisabled && !isSelected ? 'hover:bg-blue-50 hover:text-blue-700' : ''}
+     `}
+                                                    >
+                                                        <span className={`${isAvailableDay && !isDisabled && !isSelected ? 'relative' : ''}`}>
+                                                            {format(day.date, 'd')}
+                                                            {isAvailableDay && !isDisabled && !isSelected && (
+                                                                <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-600 rounded-full"></span>
+                                                            )}
+                                                        </span>
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Time Slots Column */}
+                                <div className="w-full md:w-1/2 p-6">
+                                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Available Times</h3>
+                                    <div className="text-xs text-gray-600 mb-3">
+                                        <p>Available hours: 10:00 AM - 1:00 PM</p>
+                                    </div>
+
+                                    <div className="border border-gray-200 rounded-lg p-4 shadow-sm bg-white h-[400px] overflow-y-auto custom-scrollbar">
+                                        <div className="grid grid-cols-1 gap-3">
+                                            {timeSlots.length === 0 ? (
+                                                <div className="text-center py-12 text-gray-500">
+                                                    <p>Please select a Wednesday or Saturday to view available times</p>
+                                                </div>
+                                            ) : (
+                                                timeSlots.map((slot, index) => {
+                                                    const startTime = slot.time;
+                                                    const [hours, minutes] = startTime.split(':');
+                                                    const date = new Date();
+                                                    date.setHours(parseInt(hours));
+                                                    date.setMinutes(parseInt(minutes));
+                                                    const endTime = new Date(date.getTime() + 30 * 60000);
+                                                    const timeRange = `${format(date, 'h:mm a')} - ${format(endTime, 'h:mm a')}`;
+
+                                                    return (
+                                                        <button
+                                                            key={index}
+                                                            onClick={() => {
+                                                                if (slot.available) {
+                                                                    setSelectedTime(slot.time);
+                                                                    setStep(2);
+                                                                }
+                                                            }}
+                                                            disabled={!slot.available}
+                                                            className={`
+                                                                       relative py-4 px-3 rounded-md text-center transition-all duration-200 w-full
+                                                                       ${slot.available
+                                                                    ? 'bg-white border-2 border-gray-200 hover:border-blue-500 hover:bg-blue-50 text-gray-800 hover:text-blue-700 shadow-sm hover:shadow'
+                                                                    : 'bg-gray-50 text-gray-400 cursor-not-allowed border border-gray-200'
+                                                                }
+                                                                   `}
+                                                        >
+                                                            <span className="font-medium text-base">{timeRange}</span>
+                                                            {!slot.available && (
+                                                                <span className="absolute top-2 right-2 text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                                                                    Unavailable
+                                                                </span>
+                                                            )}
+                                                        </button>
+                                                    );
+                                                })
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
                         )}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="text-xs text-gray-600 mt-2 mb-2">
-              <p>Available days: Wednesdays and Saturdays</p>
-              <p>Available hours: 10:00 AM - 1:00 PM</p>
-              <p className="mt-3">Time zone: Pakistan, Maldives Time (6:00pm)</p>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Right Column - Time Slots */}
-      <div className="md:w-1/3 bg-white p-4 border-l border-gray-200">
-        {step === 1 && (
-          <div>
-            <h3 className="text-lg font-medium text-gray-800 mb-3">Available Times</h3>
-            
-            <div className="h-60 overflow-y-auto pr-1 custom-scrollbar">
-              <div className="grid grid-cols-2 gap-2">
-                {timeSlots.map((slot, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      if (slot.available) {
-                        setSelectedTime(slot.time);
-                        setStep(2);
-                      }
-                    }}
-                    disabled={!slot.available}
-                    className={`
-                      relative py-3 rounded-md text-center transition-all duration-200
-                      ${slot.available
-                        ? 'bg-white border border-blue-100 hover:border-blue-500 hover:bg-blue-50 text-gray-700 hover:text-blue-700 shadow-sm hover:shadow'
-                        : 'bg-gray-50 text-gray-400 cursor-not-allowed border border-gray-100'
-                      }
-                    `}
-                  >
-                    <span className="font-medium">{slot.time}</span>
-                    {!slot.available && (
-                      <span className="absolute top-1 right-1 text-xs text-gray-400">
-                        Unavailable
-                      </span>
-                    )}
-                  </button>
-                ))}
-              </div>
-            </div>
-            
-            <div className="mt-4">
-              <p className="text-sm text-gray-500">
-                Select your preferred time slot to continue
-              </p>
-            </div>
-          </div>
-        )}
-      
-       
-      
-    
 
                         {/* Step 2: Enter Details */}
                         {step === 2 && (
-                            <div className="p-6">
+                            <div className="w-full p-6">
                                 <button
                                     onClick={() => setStep(1)}
-                                    className="flex items-center text-blue-600 mb-4"
+                                    className="flex items-center text-blue-600 mb-6 hover:text-blue-800 transition-colors"
                                 >
-                                    <ArrowLeftIcon className="w-4 h-4 mr-1" />
-                                    <span>Back</span>
+                                    <ArrowLeftIcon className="w-4 h-4 mr-2" />
+                                    <span>Back to Calendar</span>
                                 </button>
 
-                                <h2 className="text-lg font-semibold mb-4">Enter Details</h2>
+                                <h2 className="text-xl font-semibold mb-6 text-gray-800">Enter Your Details</h2>
 
-                                <form onSubmit={handleSubmit} className="space-y-4">
+                                <form onSubmit={handleSubmit} className="space-y-5 max-w-lg">
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
                                         <input
                                             type="text"
                                             value={name}
                                             onChange={(e) => setName(e.target.value)}
-                                            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+                                            placeholder="Enter your full name"
                                             required
                                         />
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
                                         <input
                                             type="email"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+                                            placeholder="email@example.com"
                                             required
                                         />
                                     </div>
 
-                                    <div>
-                                        <button
-                                            type="button"
-                                            className="text-blue-600 text-sm hover:underline"
-                                        >
-                                            Add Guests
-                                        </button>
-                                    </div>
+                                   
 
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Location *</label>
-                                        <div className="space-y-2">
-                                            <label className="flex items-center">
+                                    <div className="pt-2">
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">How would you like to meet? *</label>
+                                        <div className="space-y-3">
+                                            <label className="flex items-center p-3 border border-gray-200 rounded-md bg-white hover:border-blue-300 transition-colors cursor-pointer">
                                                 <input
                                                     type="radio"
                                                     name="location"
@@ -394,15 +382,26 @@ const AppointmentBooking: React.FC = () => {
                                                     onChange={() => setLocation('zoom')}
                                                     className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
                                                 />
-                                                <span className="ml-2 flex items-center">
-                                                    <svg className="w-4 h-4 mr-2 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
-                                                        <path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm4.151 16.464h-2.16c-.993 0-1.763-.771-1.763-1.765V9.95c0-.993.77-1.765 1.763-1.765h2.16c.315 0 .611.121.836.342l3.986 3.986a1.168 1.168 0 010 1.649l-3.986 3.986a1.168 1.168 0 01-.836.342v-.027z" />
+                                                <span className="ml-3 flex items-center text-gray-800">
+                                                    <svg className="w-5 h-5 mr-2 text-blue-600" 
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        aria-label="Zoom" 
+                                                        role="img"
+                                                        viewBox="0 0 512 512">
+                                                        <rect
+                                                            width="512" 
+                                                            height="512"
+                                                            rx="15%"
+                                                            fill="#2D8CFF"/>
+                                                        <path 
+                                                            fill="#ffffff" 
+                                                            d="M428 357c8 2 15-2 19-8 2-3 2-8 2-19V179c0-11 0-15-2-19-3-8-11-11-19-8-21 14-67 55-68 72-.8 3-.8 8-.8 15v38c0 8 0 11 .8 15 1 8 4 15 8 19 12 9 52 45 61 45zM64 187c0-15 0-23 3-27 2-4 8-8 11-11 4-3 11-3 27-3h129c38 0 57 0 72 8 11 8 23 15 30 30 8 15 8 34 8 72v68c0 15 0 23-3 27-2 4-8 8-11 11-4 3-11 3-27 3H174c-38 0-57 0-72-8-11-8-23-15-30-30-8-15-8-34-8-72z"/>
                                                     </svg>
-                                                    Zoom
+                                                    Zoom Meeting
                                                 </span>
                                             </label>
 
-                                            <label className="flex items-center">
+                                            <label className="flex items-center p-3 border border-gray-200 rounded-md bg-white hover:border-blue-300 transition-colors cursor-pointer">
                                                 <input
                                                     type="radio"
                                                     name="location"
@@ -411,37 +410,45 @@ const AppointmentBooking: React.FC = () => {
                                                     onChange={() => setLocation('phone')}
                                                     className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
                                                 />
-                                                <span className="ml-2 flex items-center">
-                                                    <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                                <span className="ml-3 flex items-center text-gray-800">
+                                                    <svg className="w-5 h-5 mr-2 text-blue-600" 
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 512 512">
+                                                        <rect
+                                                            width="512" 
+                                                            height="512"
+                                                            rx="15%"
+                                                            fill="#2D8CFF"/>
+                                                        <path 
+                                                            fill="#ffffff" 
+                                                            d="M390 286.2c-8.7-8.7-19.3-13.5-30.8-13.5-11.5 0-22.2 4.8-30.9 13.5l-30.3 30.2c-2.4-1.3-4.7-2.4-7-3.6-3.3-1.7-6.4-3.2-9-4.8-26.8-17-51.3-39.1-74.5-67.7-11.3-14.3-18.9-26.3-24.4-38.6 7.4-6.7 14.2-13.7 20.9-20.5 2.5-2.5 5-5.1 7.5-7.6 18.9-18.9 18.9-43.3 0-62.2l-26.2-26.2c-3-3-5.9-5.9-8.8-8.9-5.7-5.8-11.5-11.8-17.5-17.4-8.7-8.7-19.2-13.3-30.7-13.3-11.5 0-22.1 4.6-31 13.3l-.2.2-32.6 32.8c-11.7 11.7-18.3 25.9-19.7 42.3-2 26.8 5.7 51.6 11.5 67.8 14.2 39.4 35.5 76 67.3 115.4 38.7 47.1 85.2 84.3 138.4 110.4 20.3 9.6 47.5 21 77.8 22.9 1.9.1 3.8.2 5.6.2 20.6 0 37.9-7.4 51.5-22.1 0-.1.1-.2.2-.3 4.7-5.6 10-10.7 15.6-16.1 3.8-3.6 7.7-7.4 11.5-11.3 8.8-9 13.5-19.6 13.5-31.1 0-11.5-4.8-22.1-13.7-30.9L390 286.2z"/>
                                                     </svg>
-                                                    Phone call
+                                                    Phone Call
                                                 </span>
                                             </label>
                                         </div>
                                     </div>
 
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                                            Please share anything that will help prepare for our meeting.
+                                    <div className="pt-2">
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                                            Please share anything that will help prepare for our meeting
                                         </label>
                                         <textarea
                                             value={notes}
                                             onChange={(e) => setNotes(e.target.value)}
-                                            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
                                             rows={4}
+                                            placeholder="Share any specific topics you'd like to discuss or questions you have"
                                         />
                                     </div>
 
-                                    <div className="text-sm text-gray-600 mt-4">
-                                        By proceeding, you confirm that you have read and agree to Calendly's Terms of Use and Privacy Notice.
-                                    </div>
+                                   
 
-                                    <div className="pt-4">
+                                    <div className="pt-6">
                                         <button
                                             type="submit"
                                             disabled={loading}
-                                            className="w-full py-3 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-blue-300 font-medium"
+                                            className="w-full py-3 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-blue-300 font-medium shadow-sm transition-colors"
                                         >
                                             {loading ? 'Scheduling...' : 'Schedule Event'}
                                         </button>
@@ -481,12 +488,7 @@ const AppointmentBooking: React.FC = () => {
                                         </svg>
                                         <span>{selectedTime} - {format(addMinutes(new Date(selectedDate.setHours(parseInt(selectedTime.split(':')[0]), parseInt(selectedTime.split(' ')[0].split(':')[1]))), 30), 'h:mm a')}, {format(selectedDate, 'EEEE, MMMM d, yyyy')}</span>
                                     </div>
-                                    <div className="flex items-center text-gray-600 mt-1">
-                                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
-                                        </svg>
-                                        <span>Pakistan, Maldives Time</span>
-                                    </div>
+                                   
                                 </div>
                             </div>
                         )}
