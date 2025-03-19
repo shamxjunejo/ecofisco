@@ -3,19 +3,11 @@ import { db } from '../firebase/config';
 import { collection, addDoc, getDocs, query, where } from 'firebase/firestore';
 import { format, addDays, startOfDay, addMinutes, isToday, isTomorrow, isThisWeek } from 'date-fns';
 import { ChevronLeftIcon, ChevronRightIcon, ArrowLeftIcon, CheckCircleIcon } from '@heroicons/react/24/solid';
-import { createZoomMeeting, formatZoomDate } from '../services/zoom';
-import { sendAppointmentConfirmation } from '../services/email';
+import { countryCodes } from '../data/countryCodes';
 
 interface TimeSlot {
     time: string;
     available: boolean;
-}
-
-interface ZoomMeetingDetails {
-    id: string;
-    join_url: string;
-    password: string;
-    start_url: string;
 }
 
 const AppointmentBooking: React.FC = () => {
@@ -25,13 +17,14 @@ const AppointmentBooking: React.FC = () => {
     const [selectedTime, setSelectedTime] = useState<string>('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [location, setLocation] = useState('zoom');
     const [notes, setNotes] = useState('');
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [currentMonth, setCurrentMonth] = useState(format(new Date(), 'MMMM yyyy'));
-    const [zoomError, setZoomError] = useState<string | null>(null);
-    const [meetingDetails, setMeetingDetails] = useState<ZoomMeetingDetails | null>(null);
+
+
 
     // Generate calendar days for the current month view
     const generateCalendarDays = () => {
@@ -127,67 +120,26 @@ const AppointmentBooking: React.FC = () => {
         if (!selectedTime || !name || !email) return;
 
         setLoading(true);
-        setZoomError(null);
-        
         try {
-            // Format date for Zoom API
-            const formattedDate = formatZoomDate(selectedDate, selectedTime);
-            let zoomMeeting: ZoomMeetingDetails | null = null;
+            // Get selected country code
+            const selectedCountryCode = document.getElementById('selectedCountryCode')?.textContent || '+1';
             
-            // If using Zoom, create a meeting
-            if (location === 'zoom') {
-                try {
-                    zoomMeeting = await createZoomMeeting(
-                        `EcoFisco Consultation with ${name}`,
-                        formattedDate,
-                        30, // 30 minutes duration
-                        'Asia/Karachi', // Pakistan timezone
-                        notes ? `Meeting agenda: ${notes}` : 'Free consultation appointment'
-                    );
-                    setMeetingDetails(zoomMeeting);
-                } catch (error) {
-                    console.error('Failed to create Zoom meeting:', error);
-                    setZoomError('Failed to create Zoom meeting. The appointment will be booked but you may need to set up the meeting manually.');
-                }
-            }
-
-            // Add the appointment to Firebase
+            // Find the country name from the countryCodes array
+            const selectedCountry = countryCodes.find(item => item.code === selectedCountryCode)?.country || '';
+            
             await addDoc(collection(db, 'appointments'), {
                 name,
                 email,
+                phoneNumber: `${selectedCountryCode} ${phoneNumber}`,
+                country: selectedCountry.replace('- ', ''), // Remove the "- " prefix from country name
                 date: format(selectedDate, 'yyyy-MM-dd'),
                 time: selectedTime,
                 location,
                 notes,
                 createdAt: new Date().toISOString(),
-                status: 'pending',
-                // Add Zoom meeting details if available
-                zoom: zoomMeeting ? {
-                    id: zoomMeeting.id,
-                    join_url: zoomMeeting.join_url,
-                    password: zoomMeeting.password
-                } : null
+                status: 'pending'
             });
-            
-            // Send confirmation email
-            try {
-                await sendAppointmentConfirmation(
-                    name,
-                    email,
-                    selectedDate,
-                    selectedTime,
-                    location,
-                    zoomMeeting ? {
-                        id: zoomMeeting.id,
-                        join_url: zoomMeeting.join_url,
-                        password: zoomMeeting.password
-                    } : undefined
-                );
-            } catch (error) {
-                console.error('Failed to send confirmation email:', error);
-                // Don't block the appointment creation if email fails
-            }
-            
+
             setSuccess(true);
             setStep(3);
         } catch (error) {
@@ -212,7 +164,7 @@ const AppointmentBooking: React.FC = () => {
                     <div className="md:w-1/4 bg-gray-50 p-6 border-r border-gray-200">
                         <div className="flex flex-col h-full">
                             <div>
-                                <h1 className="text-xl font-bold text-blue-700 tracking-wide">Khadija Zouine</h1>
+                                <h1 className="text-xl font-bold text-blue-600 tracking-wide">Khadija Zouine</h1>
                                 <h3 className="font-medium text-gray-500 text-sm mb-3">Immigration & Tax Consultant</h3>
                                 <div className="border-t border-gray-200 my-4"></div>
 
@@ -406,33 +358,101 @@ const AppointmentBooking: React.FC = () => {
 
                                 <h2 className="text-xl font-semibold mb-6 text-gray-800">Enter Your Details</h2>
 
-                                <form onSubmit={handleSubmit} className="space-y-5 max-w-lg">
+                                <form onSubmit={handleSubmit} className="space-y-6 max-w-lg">
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
                                         <input
                                             type="text"
                                             value={name}
                                             onChange={(e) => setName(e.target.value)}
-                                            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+                                            className="w-full p-3 border border-gray-400 rounded-md focus:ring-0 focus:ring-blue-500 focus:border-blue-500 bg-white"
                                             placeholder="Enter your full name"
                                             required
                                         />
                                     </div>
 
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
                                         <input
                                             type="email"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+                                            className="w-full p-3 border border-gray-400 rounded-md focus:ring-0 focus:ring-blue-500 focus:border-blue-500 bg-white"
                                             placeholder="email@example.com"
                                             required
                                         />
                                     </div>
 
-                                    <div className="pt-2">
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">How would you like to meet? *</label>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                                        <div className="flex">
+                                            <div className="relative">
+                                                <button
+                                                    type="button"
+                                                    className="flex items-center justify-between w-22 p-3 border border-gray-300 rounded-l-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-700"
+                                                    onClick={() => {
+                                                        const popup = document.getElementById('countryCodePopup');
+                                                        if (popup) popup.classList.toggle('hidden');
+                                                    }}>
+                                                    <span id="selectedCountryCode">+1</span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                                                    </svg>
+                                                </button>
+
+                                                <div id="countryCodePopup" className="hidden absolute z-10 mt-1 w-72 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto custom-scrollbar-code">
+                                                    <div className="p-2">
+                                                        <input
+                                                            type="text"
+                                                            placeholder="Search countries..."
+                                                            className="w-full p-2 border border-gray-300 rounded-md mb-2"
+                                                            onChange={(e) => {
+                                                                const searchTerm = e.target.value.toLowerCase();
+                                                                const buttons = document.querySelectorAll('.country-option');
+                                                                buttons.forEach(button => {
+                                                                    const text = button.textContent?.toLowerCase() || '';
+                                                                    if (text.includes(searchTerm)) {
+                                                                        (button as HTMLElement).style.display = 'block';
+                                                                    } else {
+                                                                        (button as HTMLElement).style.display = 'none';
+                                                                    }
+                                                                });
+                                                            }}
+                                                        />
+                                                        <div className="grid grid-cols-1 gap-1">
+                                                            {countryCodes.map((item, index) => (
+                                                                <button
+                                                                    key={index}
+                                                                    type="button"
+                                                                    className="country-option text-left p-2 hover:bg-gray-100 rounded-md flex items-center"
+                                                                    onClick={() => {
+                                                                        const codeElement = document.getElementById('selectedCountryCode');
+                                                                        if (codeElement) codeElement.textContent = item.code;
+                                                                        const popup = document.getElementById('countryCodePopup');
+                                                                        if (popup) popup.classList.add('hidden');
+                                                                    }}
+                                                                >
+                                                                    <span className="font-medium mr-2">{item.code}</span>
+                                                                    <span className="text-gray-600">{item.country}</span>
+                                                                </button>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input
+                                                type="tel"
+                                                className="flex-1 p-3 border border-gray-300 border-l-0 rounded-r-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+                                                placeholder="Enter your phone number"
+                                                value={phoneNumber}
+                                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                                required={location === 'phone'}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-3">How would you like to meet? *</label>
                                         <div className="space-y-3">
                                             <label className="flex items-center p-3 border border-gray-200 rounded-md bg-white hover:border-blue-300 transition-colors cursor-pointer">
                                                 <input
@@ -441,9 +461,9 @@ const AppointmentBooking: React.FC = () => {
                                                     value="zoom"
                                                     checked={location === 'zoom'}
                                                     onChange={() => setLocation('zoom')}
-                                                    className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                                                    className="h-5 w-5 text-blue-600 border-gray-300 focus:ring-blue-500"
                                                 />
-                                                <span className="ml-3 flex items-center text-gray-800">
+                                                <span className="ml-3 flex items-center text-gray-800 text-base">
                                                     <svg className="w-5 h-5 mr-2 text-blue-600"
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         aria-label="Zoom"
@@ -462,17 +482,6 @@ const AppointmentBooking: React.FC = () => {
                                                 </span>
                                             </label>
 
-                                            {location === 'zoom' && (
-                                                <div className="ml-7 mt-2">
-                                                    <label className="block text-sm font-medium text-gray-700 mb-1">Zoom ID/Profile Link</label>
-                                                    <input
-                                                        type="text"
-                                                        className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
-                                                        placeholder="Enter your Zoom ID or profile link"
-                                                    />
-                                                </div>
-                                            )}
-
                                             <label className="flex items-center p-3 border border-gray-200 rounded-md bg-white hover:border-blue-300 transition-colors cursor-pointer">
                                                 <input
                                                     type="radio"
@@ -480,9 +489,9 @@ const AppointmentBooking: React.FC = () => {
                                                     value="phone"
                                                     checked={location === 'phone'}
                                                     onChange={() => setLocation('phone')}
-                                                    className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                                                    className="h-5 w-5 text-blue-600 border-gray-300 focus:ring-blue-500"
                                                 />
-                                                <span className="ml-3 flex items-center text-gray-800">
+                                                <span className="ml-3 flex items-center text-gray-800 text-base">
                                                     <svg className="w-5 h-5 mr-2 text-blue-600"
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         viewBox="0 0 512 512">
@@ -498,287 +507,10 @@ const AppointmentBooking: React.FC = () => {
                                                     Phone Call
                                                 </span>
                                             </label>
-
-                                            {location === 'phone' && (
-                                                <div className="ml-7 mt-2">
-                                                    <label className="block text-sm font-medium text-gray-700 mb-1">Phone number *</label>
-                                                    <div className="flex">
-                                                        <div className="relative">
-                                                            <button
-                                                                type="button"
-                                                                className="flex items-center justify-between w-28 p-3 border border-gray-300 rounded-l-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-700"
-                                                                onClick={() => {
-                                                                    const popup = document.getElementById('countryCodePopup');
-                                                                    if (popup) popup.classList.toggle('hidden');
-                                                                }}
-                                                            >
-                                                                <span id="selectedCountryCode">+1</span>
-                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                                                                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                                                                </svg>
-                                                            </button>
-
-                                                            <div id="countryCodePopup" className="hidden absolute z-10 mt-1 w-72 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto custom-scrollbar-code">
-                                                                <div className="p-2">
-                                                                    <input
-                                                                        type="text"
-                                                                        placeholder="Search countries..."
-                                                                        className="w-full p-2 border border-gray-300 rounded-md mb-2"
-                                                                        onChange={(e) => {
-                                                                            const searchTerm = e.target.value.toLowerCase();
-                                                                            const buttons = document.querySelectorAll('.country-option');
-                                                                            buttons.forEach(button => {
-                                                                                const text = button.textContent?.toLowerCase() || '';
-                                                                                if (text.includes(searchTerm)) {
-                                                                                    (button as HTMLElement).style.display = 'block';
-                                                                                } else {
-                                                                                    (button as HTMLElement).style.display = 'none';
-                                                                                }
-                                                                            });
-                                                                        }}
-                                                                    />
-                                                                    <div className="grid grid-cols-1 gap-1">
-                                                                        {[
-                                                                            { code: '+93', country: '- Afghanistan' },
-                                                                            { code: '+355', country: '- Albania' },
-                                                                            { code: '+213', country: '- Algeria' },
-                                                                            { code: '+376', country: '- Andorra' },
-                                                                            { code: '+244', country: '- Angola' },
-                                                                            { code: '+54', country: '- Argentina' },
-                                                                            { code: '+374', country: '- Armenia' },
-                                                                            { code: '+297', country: '- Aruba' },
-                                                                            { code: '+61', country: '- Australia' },
-                                                                            { code: '+43', country: '- Austria' },
-                                                                            { code: '+994', country: '- Azerbaijan' },
-                                                                            { code: '+973', country: '- Bahrain' },
-                                                                            { code: '+880', country: '- Bangladesh' },
-                                                                            { code: '+375', country: '- Belarus' },
-                                                                            { code: '+32', country: '- Belgium' },
-                                                                            { code: '+501', country: '- Belize' },
-                                                                            { code: '+229', country: '- Benin' },
-                                                                            { code: '+975', country: '- Bhutan' },
-                                                                            { code: '+591', country: '- Bolivia' },
-                                                                            { code: '+387', country: '- Bosnia and Herzegovina' },
-                                                                            { code: '+267', country: '- Botswana' },
-                                                                            { code: '+55', country: '- Brazil' },
-                                                                            { code: '+246', country: '- British Indian Ocean Territory' },
-                                                                            { code: '+673', country: '- Brunei' },
-                                                                            { code: '+359', country: '- Bulgaria' },
-                                                                            { code: '+226', country: '- Burkina Faso' },
-                                                                            { code: '+257', country: '- Burundi' },
-                                                                            { code: '+855', country: '- Cambodia' },
-                                                                            { code: '+237', country: '- Cameroon' },
-                                                                            { code: '+1', country: '- Canada' },
-                                                                            { code: '+238', country: '- Cape Verde' },
-                                                                            { code: '+599', country: '- Caribbean Netherlands' },
-                                                                            { code: '+236', country: '- Central African Republic' },
-                                                                            { code: '+235', country: '- Chad' },
-                                                                            { code: '+56', country: '- Chile' },
-                                                                            { code: '+86', country: '- China' },
-                                                                            { code: '+57', country: '- Colombia' },
-                                                                            { code: '+269', country: '- Comoros' },
-                                                                            { code: '+242', country: '- Republic of the Congo' },
-                                                                            { code: '+682', country: '- Cook Islands' },
-                                                                            { code: '+506', country: '- Costa Rica' },
-                                                                            { code: '+385', country: '- Croatia' },
-                                                                            { code: '+53', country: '- Cuba' },
-                                                                            { code: '+357', country: '- Cyprus' },
-                                                                            { code: '+420', country: '- Czech Republic' },
-                                                                            { code: '+243', country: '- DR Congo' },
-                                                                            { code: '+45', country: '- Denmark' },
-                                                                            { code: '+253', country: '- Djibouti' },
-                                                                            { code: '+670', country: '- East Timor' },
-                                                                            { code: '+593', country: '- Ecuador' },
-                                                                            { code: '+20', country: '- Egypt' },
-                                                                            { code: '+503', country: '- El Salvador' },
-                                                                            { code: '+240', country: '- Equatorial Guinea' },
-                                                                            { code: '+291', country: '- Eritrea' },
-                                                                            { code: '+372', country: '- Estonia' },
-                                                                            { code: '+268', country: '- Eswatini' },
-                                                                            { code: '+251', country: '- Ethiopia' },
-                                                                            { code: '+500', country: '- Falkland Islands' },
-                                                                            { code: '+298', country: '- Faroe Islands' },
-                                                                            { code: '+679', country: '- Fiji' },
-                                                                            { code: '+358', country: '- Finland' },
-                                                                            { code: '+33', country: '- France' },
-                                                                            { code: '+594', country: '- French Guiana' },
-                                                                            { code: '+689', country: '- French Polynesia' },
-                                                                            { code: '+241', country: '- Gabon' },
-                                                                            { code: '+220', country: '- Gambia' },
-                                                                            { code: '+995', country: '- Georgia' },
-                                                                            { code: '+49', country: '- Germany' },
-                                                                            { code: '+233', country: '- Ghana' },
-                                                                            { code: '+350', country: '- Gibraltar' },
-                                                                            { code: '+30', country: '- Greece' },
-                                                                            { code: '+299', country: '- Greenland' },
-                                                                            { code: '+590', country: '- Guadeloupe' },
-                                                                            { code: '+502', country: '- Guatemala' },
-                                                                            { code: '+224', country: '- Guinea' },
-                                                                            { code: '+245', country: '- Guinea-Bissau' },
-                                                                            { code: '+592', country: '- Guyana' },
-                                                                            { code: '+509', country: '- Haiti' },
-                                                                            { code: '+504', country: '- Honduras' },
-                                                                            { code: '+852', country: '- Hong Kong' },
-                                                                            { code: '+36', country: '- Hungary' },
-                                                                            { code: '+354', country: '- Iceland' },
-                                                                            { code: '+91', country: '- India' },
-                                                                            { code: '+62', country: '- Indonesia' },
-                                                                            { code: '+98', country: '- Iran' },
-                                                                            { code: '+964', country: '- Iraq' },
-                                                                            { code: '+353', country: '- Ireland' },
-                                                                            { code: '+972', country: '- Israel' },
-                                                                            { code: '+39', country: '- Italy' },
-                                                                            { code: '+225', country: '- Côte d\'Ivoire' },
-                                                                            { code: '+81', country: '- Japan' },
-                                                                            { code: '+962', country: '- Jordan' },
-                                                                            { code: '+7', country: '- Kazakhstan' },
-                                                                            { code: '+254', country: '- Kenya' },
-                                                                            { code: '+686', country: '- Kiribati' },
-                                                                            { code: '+383', country: '- Kosovo' },
-                                                                            { code: '+965', country: '- Kuwait' },
-                                                                            { code: '+996', country: '- Kyrgyzstan' },
-                                                                            { code: '+856', country: '- Laos' },
-                                                                            { code: '+371', country: '- Latvia' },
-                                                                            { code: '+961', country: '- Lebanon' },
-                                                                            { code: '+266', country: '- Lesotho' },
-                                                                            { code: '+231', country: '- Liberia' },
-                                                                            { code: '+218', country: '- Libya' },
-                                                                            { code: '+423', country: '- Liechtenstein' },
-                                                                            { code: '+370', country: '- Lithuania' },
-                                                                            { code: '+352', country: '- Luxembourg' },
-                                                                            { code: '+853', country: '- Macau' },
-                                                                            { code: '+389', country: '- North Macedonia' },
-                                                                            { code: '+261', country: '- Madagascar' },
-                                                                            { code: '+265', country: '- Malawi' },
-                                                                            { code: '+60', country: '- Malaysia' },
-                                                                            { code: '+960', country: '- Maldives' },
-                                                                            { code: '+223', country: '- Mali' },
-                                                                            { code: '+356', country: '- Malta' },
-                                                                            { code: '+692', country: '- Marshall Islands' },
-                                                                            { code: '+596', country: '- Martinique' },
-                                                                            { code: '+230', country: '- Mauritius' },
-                                                                            { code: '+52', country: '- Mexico' },
-                                                                            { code: '+691', country: '- Micronesia' },
-                                                                            { code: '+373', country: '- Moldova' },
-                                                                            { code: '+377', country: '- Monaco' },
-                                                                            { code: '+976', country: '- Mongolia' },
-                                                                            { code: '+382', country: '- Montenegro' },
-                                                                            { code: '+212', country: '- Morocco' },
-                                                                            { code: '+258', country: '- Mozambique' },
-                                                                            { code: '+95', country: '- Myanmar' },
-                                                                            { code: '+264', country: '- Namibia' },
-                                                                            { code: '+674', country: '- Nauru' },
-                                                                            { code: '+977', country: '- Nepal' },
-                                                                            { code: '+31', country: '- Netherlands' },
-                                                                            { code: '+687', country: '- New Caledonia' },
-                                                                            { code: '+64', country: '- New Zealand' },
-                                                                            { code: '+505', country: '- Nicaragua' },
-                                                                            { code: '+227', country: '- Niger' },
-                                                                            { code: '+234', country: '- Nigeria' },
-                                                                            { code: '+683', country: '- Niue' },
-                                                                            { code: '+850', country: '- North Korea' },
-                                                                            { code: '+672', country: '- Norfolk Island' },
-                                                                            { code: '+47', country: '- Norway' },
-                                                                            { code: '+968', country: '- Oman' },
-                                                                            { code: '+92', country: '- Pakistan' },
-                                                                            { code: '+680', country: '- Palau' },
-                                                                            { code: '+970', country: '- Palestine' },
-                                                                            { code: '+507', country: '- Panama' },
-                                                                            { code: '+675', country: '- Papua New Guinea' },
-                                                                            { code: '+595', country: '- Paraguay' },
-                                                                            { code: '+51', country: '- Peru' },
-                                                                            { code: '+63', country: '- Philippines' },
-                                                                            { code: '+48', country: '- Poland' },
-                                                                            { code: '+351', country: '- Portugal' },
-                                                                            { code: '+1', country: '- Puerto Rico' },
-                                                                            { code: '+974', country: '- Qatar' },
-                                                                            { code: '+262', country: '- Réunion' },
-                                                                            { code: '+40', country: '- Romania' },
-                                                                            { code: '+7', country: '- Russia' },
-                                                                            { code: '+250', country: '- Rwanda' },
-                                                                            { code: '+290', country: '- Saint Helena' },
-                                                                            { code: '+685', country: '- Samoa' },
-                                                                            { code: '+378', country: '- San Marino' },
-                                                                            { code: '+239', country: '- São Tomé and Príncipe' },
-                                                                            { code: '+966', country: '- Saudi Arabia' },
-                                                                            { code: '+221', country: '- Senegal' },
-                                                                            { code: '+381', country: '- Serbia' },
-                                                                            { code: '+248', country: '- Seychelles' },
-                                                                            { code: '+232', country: '- Sierra Leone' },
-                                                                            { code: '+65', country: '- Singapore' },
-                                                                            { code: '+421', country: '- Slovakia' },
-                                                                            { code: '+386', country: '- Slovenia' },
-                                                                            { code: '+677', country: '- Solomon Islands' },
-                                                                            { code: '+252', country: '- Somalia' },
-                                                                            { code: '+27', country: '- South Africa' },
-                                                                            { code: '+82', country: '- South Korea' },
-                                                                            { code: '+34', country: '- Spain' },
-                                                                            { code: '+94', country: '- Sri Lanka' },
-                                                                            { code: '+249', country: '- Sudan' },
-                                                                            { code: '+597', country: '- Suriname' },
-                                                                            { code: '+46', country: '- Sweden' },
-                                                                            { code: '+41', country: '- Switzerland' },
-                                                                            { code: '+963', country: '- Syria' },
-                                                                            { code: '+886', country: '- Taiwan' },
-                                                                            { code: '+992', country: '- Tajikistan' },
-                                                                            { code: '+255', country: '- Tanzania' },
-                                                                            { code: '+66', country: '- Thailand' },
-                                                                            { code: '+228', country: '- Togo' },
-                                                                            { code: '+690', country: '- Tokelau' },
-                                                                            { code: '+676', country: '- Tonga' },
-                                                                            { code: '+216', country: '- Tunisia' },
-                                                                            { code: '+90', country: '- Turkey' },
-                                                                            { code: '+993', country: '- Turkmenistan' },
-                                                                            { code: '+688', country: '- Tuvalu' },
-                                                                            { code: '+256', country: '- Uganda' },
-                                                                            { code: '+380', country: '- Ukraine' },
-                                                                            { code: '+971', country: '- United Arab Emirates' },
-                                                                            { code: '+44', country: '- United Kingdom' },
-                                                                            { code: '+1', country: '- United States' },
-                                                                            { code: '+598', country: '- Uruguay' },
-                                                                            { code: '+998', country: '- Uzbekistan' },
-                                                                            { code: '+678', country: '- Vanuatu' },
-                                                                            { code: '+39', country: '- Vatican City' },
-                                                                            { code: '+58', country: '- Venezuela' },
-                                                                            { code: '+84', country: '- Vietnam' },
-                                                                            { code: '+681', country: '- Wallis and Futuna' },
-                                                                            { code: '+967', country: '- Yemen' },
-                                                                            { code: '+260', country: '- Zambia' },
-                                                                            { code: '+263', country: '- Zimbabwe' }
-                                                                        ].map((item, index) => (
-                                                                            <button
-                                                                                key={index}
-                                                                                type="button"
-                                                                                className="country-option text-left p-2 hover:bg-gray-100 rounded-md flex items-center"
-                                                                                onClick={() => {
-                                                                                    const codeElement = document.getElementById('selectedCountryCode');
-                                                                                    if (codeElement) codeElement.textContent = item.code;
-                                                                                    const popup = document.getElementById('countryCodePopup');
-                                                                                    if (popup) popup.classList.add('hidden');
-                                                                                }}
-                                                                            >
-                                                                                <span className="font-medium mr-2">{item.code}</span>
-                                                                                <span className="text-gray-600">{item.country}</span>
-                                                                            </button>
-                                                                        ))}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <input
-                                                            type="tel"
-                                                            className="flex-1 p-3 border border-gray-300 border-l-0 rounded-r-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
-                                                            placeholder="Enter your phone number"
-                                                            required={location === 'phone'}
-                                                        />
-                                                    </div>
-
-                                                </div>
-                                            )}
                                         </div>
                                     </div>
 
-                                    <div className="pt-2">
+                                    <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-2">
                                             Please share anything that will help prepare for our meeting
                                         </label>
@@ -791,7 +523,7 @@ const AppointmentBooking: React.FC = () => {
                                         />
                                     </div>
 
-                                    <div className="pt-6">
+                                    <div className="pt-2">
                                         <button
                                             type="submit"
                                             disabled={loading}
@@ -811,57 +543,20 @@ const AppointmentBooking: React.FC = () => {
                                     <CheckCircleIcon className="w-16 h-16 text-green-500" />
                                 </div>
 
-                                <h2 className="text-2xl font-bold text-center mb-3">You are scheduled</h2>
-                                <p className="text-gray-600 text-center mb-8">A invitation link has been sent to your email address.</p>
+                                <h2 className="text-2xl font-bold text-center mb-3 text-blue-600">You are scheduled</h2>
+                                <p className="text-gray-600 text-center mb-8">Your appointment is confirmed!<br/>Details have been sent to your email.</p>
 
-                                {meetingDetails && (
-                                    <div className="mb-8">
-                                        <a 
-                                            href={meetingDetails.join_url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="w-full flex items-center justify-center px-5 py-3 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors mb-4"
-                                        >
-                                            <svg className="w-5 h-5 mr-2 text-blue-600"
-                                                xmlns="http://www.w3.org/2000/svg" 
-                                                aria-label="Zoom"
-                                                role="img"
-                                                viewBox="0 0 512 512">
-                                                <rect
-                                                    width="512"
-                                                    height="512"
-                                                    rx="15%"
-                                                    fill="#2D8CFF" />
-                                                <path
-                                                    fill="#ffffff"
-                                                    d="M428 357c8 2 15-2 19-8 2-3 2-8 2-19V179c0-11 0-15-2-19-3-8-11-11-19-8-21 14-67 55-68 72-.8 3-.8 8-.8 15v38c0 8 0 11 .8 15 1 8 4 15 8 19 12 9 52 45 61 45zM64 187c0-15 0-23 3-27 2-4 8-8 11-11 4-3 11-3 27-3h129c38 0 57 0 72 8 11 8 23 15 30 30 8 15 8 34 8 72v68c0 15 0 23-3 27-2 4-8 8-11 11-4 3-11 3-27 3H174c-38 0-57 0-72-8-11-8-23-15-30-30-8-15-8-34-8-72z" />
-                                            </svg>
-                                            <span>Join Zoom Meeting</span>
-                                        </a>
-                                        
-                                        <div className="bg-blue-50 p-4 rounded-lg border border-blue-100 space-y-2">
-                                            <p className="text-sm text-gray-700">
-                                                <span className="font-semibold">Meeting ID:</span> {meetingDetails.id}
-                                            </p>
-                                            <p className="text-sm text-gray-700">
-                                                <span className="font-semibold">Passcode:</span> {meetingDetails.password}
-                                            </p>
-                                        </div>
-                                    </div>
-                                )}
-
-                                {zoomError && (
-                                    <div className="mb-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-yellow-800 text-sm">
-                                        {zoomError}
-                                    </div>
-                                )}
-
-                                <button className="w-full flex items-center justify-center px-5 py-3 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors mb-8">
-                                    <span>Open invitation</span>
-                                    <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                <a 
+                                    href="https://wa.me/393516737374"
+                                    target="_blank"
+                                    rel="noopener noreferrer" 
+                                    className="w-full flex items-center justify-center px-5 py-3 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors mb-8 text-green-500"
+                                >
+                                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                                     </svg>
-                                </button>
+                                    <span>Contact on WhatsApp</span>
+                                </a>
 
                                 <div className="border border-gray-200 rounded-lg p-5 bg-gray-50">
                                     <h3 className="font-semibold text-lg mb-3">Free Appointment</h3>
@@ -881,25 +576,7 @@ const AppointmentBooking: React.FC = () => {
                                         {format(selectedDate, 'EEEE, MMMM d, yyyy')}
                                     </div>
 
-                                    {location === 'zoom' && meetingDetails && (
-                                        <div className="flex items-center text-gray-700 mt-3">
-                                            <svg className="w-5 h-5 mr-3 text-blue-500"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                aria-label="Zoom"
-                                                role="img"
-                                                viewBox="0 0 512 512">
-                                                <rect
-                                                    width="512"
-                                                    height="512"
-                                                    rx="15%"
-                                                    fill="#2D8CFF" />
-                                                <path
-                                                    fill="#ffffff"
-                                                    d="M428 357c8 2 15-2 19-8 2-3 2-8 2-19V179c0-11 0-15-2-19-3-8-11-11-19-8-21 14-67 55-68 72-.8 3-.8 8-.8 15v38c0 8 0 11 .8 15 1 8 4 15 8 19 12 9 52 45 61 45zM64 187c0-15 0-23 3-27 2-4 8-8 11-11 4-3 11-3 27-3h129c38 0 57 0 72 8 11 8 23 15 30 30 8 15 8 34 8 72v68c0 15 0 23-3 27-2 4-8 8-11 11-4 3-11 3-27 3H174c-38 0-57 0-72-8-11-8-23-15-30-30-8-15-8-34-8-72z" />
-                                            </svg>
-                                            <span className="text-sm">Via Zoom</span>
-                                        </div>
-                                    )}
+
                                 </div>
                             </div>
                         )}
