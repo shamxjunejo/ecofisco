@@ -1,6 +1,7 @@
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
 import SEO from '../components/SEO';
+import consult from "../assets/consult.svg";
 
 export default function ContactPage() {
   return (
@@ -11,8 +12,9 @@ export default function ContactPage() {
         keywords="contact E-Co Fisco, immigration consultation Italy, tax consultation Italy, legal assistance Italy, foreigner help Italy"
       />
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-700 sm:text-4xl">
+
+        <div className="text-center mb-16">
+          <h1 className="text-3xl font-bold text-gray-800 sm:text-4xl">
             Contacts
           </h1>
           <h2 className="mt-3 text-2xl font-semibold text-gray-600">
@@ -22,6 +24,44 @@ export default function ContactPage() {
             We are experts in immigration and Tax consultant.
           </p>
         </div>
+        
+        {/* Call to Action Section */}
+        <div className="bg-white  rounded-[40px] mb-16 overflow-hidden bg-gradient-to-l from-indigo-50 to-purple-50 border border-gray-300 p-4 sm:p-8 h-full">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="w-full md:w-2/3 p-4 sm:p-8 md:p-12 text-center md:text-left">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
+                  Schedule Your Free Consultation Today
+                </h2>
+                <p className="text-base sm:text-lg text-gray-600 mb-6">
+                Do you have questions about our services?<br />Book a free 30-minute information call with us!
+                </p>
+                <a
+                  href="/book-appointment"
+                  className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 text-white rounded-[40px] text-base sm:text-lg font-semibold hover:bg-blue-700 transition-colors transform hover:scale-105 duration-200"
+                >
+                  Book Your Free Consultation
+                </a>
+              </div>
+              <div className="w-full md:w-1/3  p-6 sm:p-8 md:p-12 flex items-center justify-center rounded-[30px]">
+                <div className="text-center">
+                  <div className="mb-4 sm:mb-6">
+                    <img 
+                      src={consult}
+                      alt="Consultation"
+                      className="w-32 h-32 sm:w-40 sm:h-40 mx-auto object-contain [filter:brightness(0)_saturate(100%)_invert(39%)_sepia(98%)_saturate(1900%)_hue-rotate(206deg)_brightness(97%)_contrast(95%)]"
+                    />
+                  </div>
+                  <p className="text-blue-800 font-medium text-base sm:text-lg">
+                    30-Minute Free Consultation
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
 
         {/* Contact Form Section */}
         <div className="bg-blue-600 rounded-[40px] mx-4 mt-8 border border-gray-300 max-w-7xl mx-auto">
@@ -181,6 +221,7 @@ export default function ContactPage() {
           </a>
         </div>
       </div>
+            
     </>
   )
 }

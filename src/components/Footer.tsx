@@ -3,7 +3,7 @@ import facebook from "../assets/facebook.png";
 import twitter from "../assets/twitter.png";
 import linkedin from "../assets/linkedin.png";
 import whatsapp from "../assets/whatsapp.png";
-import footer_l from "../assets/footer_l.png";
+import footer_l from "../assets/logo_f.png";
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-r from-blue-50 to-indigo-50 mt-16 border-t border-blue-100">

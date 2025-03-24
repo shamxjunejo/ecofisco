@@ -11,7 +11,7 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import ResidencePermitPage from './pages/ResidencePermitPage';
 import AppointmentBooking from './pages/AppointmentBooking';
-import logo from "./assets/logo.png";
+import logo from "./assets/logo.svg";
 
 function AppContent() {
   const navigate = useNavigate();

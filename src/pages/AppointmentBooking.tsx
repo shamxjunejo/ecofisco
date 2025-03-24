@@ -171,24 +171,24 @@ const AppointmentBooking: React.FC = () => {
                 const emailParams = {
                     // Basic info - use consistent naming to match template variables
                     to_name: name || "Client", // Ensure there's always a value for to_name
-                    to_email: email, // Keep email as is
+                    to_email: email || "", // Keep this as a string, even if empty
                     
                     // Date and time - format as simple strings to avoid parsing issues
                     appointment_date: format(selectedDate, 'EEEE, MMMM d, yyyy'),
                     appointment_time: `${selectedTime} - ${endTime}`,
                     
-                    // Meeting details - always provide a string value, NEVER null
+                    // Meeting details - always provide a string value
                     meeting_method: location === 'zoom' ? 'Zoom Meeting' : 'Phone Call',
                     
-                    // Convert null to empty string for EmailJS
-                    // Some EmailJS/Handlebars implementations have issues with null values
-                    phone_number: location === 'phone' ? `${selectedCountryCode} ${phoneNumber}` : "",
+                    // Always include phone number regardless of meeting method
+                    phone_number: `${selectedCountryCode} ${phoneNumber}`,
                     
                     // Reference info - ensure values are strings
                     appointment_id: docRef.id,
                     
-                    // Convert null to empty string for EmailJS
-                    notes: notes && notes.trim() !== '' ? notes : "",
+                    // For conditional fields, use null for empty values
+                    // This is key for Handlebars conditionals like {{#if notes}}
+                    notes: notes && notes.trim() !== '' ? notes : null,
                     
                     // Consultant info - ensure these are never empty
                     consultant_name: 'Khadija Zouine',
@@ -256,21 +256,21 @@ const AppointmentBooking: React.FC = () => {
                                     Book a free 30-minute <span className="text-blue-700 font-medium">information call</span> with us!
                                 </p>
                             </div>
-                            <div className="border-t border-gray-200 my-2"></div>
+                           
 
                             {step === 2 && selectedTime && (
                                 <div className="mt-2">
                                     <div className="bg-white p-4 rounded-md border border-gray-200 shadow-sm">
-                                        <div className="flex items-center text-gray-700 text-sm mb-2">
-                                            <svg className="w-4 h-4 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                            </svg>
-                                            <span className="font-medium">Selected Time:</span>
-                                        </div>
-                                        <div className="pl-6 text-gray-800">
-                                            <p className="text-sm mb-1">{selectedTime} - {format(addMinutes(new Date(selectedDate.setHours(parseInt(selectedTime.split(':')[0]), parseInt(selectedTime.split(' ')[0].split(':')[1]))), 30), 'h:mm a')}</p>
-                                            <p className="text-sm">{format(selectedDate, 'EEEE, MMMM d, yyyy')}</p>
-                                        </div>
+                                    <div className="flex items-center text-gray-700 text-sm mb-2">
+                                        <svg className="w-4 h-4 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        <span className="font-medium">Selected Time:</span>
+                                    </div>
+                                    <div className="pl-6 text-gray-800">
+                                        <p className="text-sm mb-1">{selectedTime} - {format(addMinutes(new Date(selectedDate.setHours(parseInt(selectedTime.split(':')[0]), parseInt(selectedTime.split(' ')[0].split(':')[1]))), 30), 'h:mm a')}</p>
+                                        <p className="text-sm">{format(selectedDate, 'EEEE, MMMM d, yyyy')}</p>
+                                    </div>
                                     </div>
                                 </div>
                             )}
@@ -446,71 +446,71 @@ const AppointmentBooking: React.FC = () => {
 
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
-                                        <div className="flex">
-                                            <div className="relative">
-                                                <button
-                                                    type="button"
+                                                    <div className="flex">
+                                                        <div className="relative">
+                                                            <button
+                                                                type="button"
                                                     className="flex items-center justify-between w-22 p-3 border border-gray-300 rounded-l-md focus:ring-6 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-700"
-                                                    onClick={() => {
-                                                        const popup = document.getElementById('countryCodePopup');
-                                                        if (popup) popup.classList.toggle('hidden');
+                                                                onClick={() => {
+                                                                    const popup = document.getElementById('countryCodePopup');
+                                                                    if (popup) popup.classList.toggle('hidden');
                                                     }}>
-                                                    <span id="selectedCountryCode">+1</span>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                                                    </svg>
-                                                </button>
+                                                                <span id="selectedCountryCode">+1</span>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                                                                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                                                                </svg>
+                                                            </button>
 
-                                                <div id="countryCodePopup" className="hidden absolute z-10 mt-1 w-72 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto custom-scrollbar-code">
-                                                    <div className="p-2">
-                                                        <input
-                                                            type="text"
-                                                            placeholder="Search countries..."
-                                                            className="w-full p-2 border border-gray-300 rounded-md mb-2"
-                                                            onChange={(e) => {
-                                                                const searchTerm = e.target.value.toLowerCase();
-                                                                const buttons = document.querySelectorAll('.country-option');
-                                                                buttons.forEach(button => {
-                                                                    const text = button.textContent?.toLowerCase() || '';
-                                                                    if (text.includes(searchTerm)) {
-                                                                        (button as HTMLElement).style.display = 'block';
-                                                                    } else {
-                                                                        (button as HTMLElement).style.display = 'none';
-                                                                    }
-                                                                });
-                                                            }}
-                                                        />
-                                                        <div className="grid grid-cols-1 gap-1">
+                                                            <div id="countryCodePopup" className="hidden absolute z-10 mt-1 w-72 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto custom-scrollbar-code">
+                                                                <div className="p-2">
+                                                                    <input
+                                                                        type="text"
+                                                                        placeholder="Search countries..."
+                                                                        className="w-full p-2 border border-gray-300 rounded-md mb-2"
+                                                                        onChange={(e) => {
+                                                                            const searchTerm = e.target.value.toLowerCase();
+                                                                            const buttons = document.querySelectorAll('.country-option');
+                                                                            buttons.forEach(button => {
+                                                                                const text = button.textContent?.toLowerCase() || '';
+                                                                                if (text.includes(searchTerm)) {
+                                                                                    (button as HTMLElement).style.display = 'block';
+                                                                                } else {
+                                                                                    (button as HTMLElement).style.display = 'none';
+                                                                                }
+                                                                            });
+                                                                        }}
+                                                                    />
+                                                                    <div className="grid grid-cols-1 gap-1">
                                                             {countryCodes.map((item, index) => (
-                                                                <button
-                                                                    key={index}
-                                                                    type="button"
-                                                                    className="country-option text-left p-2 hover:bg-gray-100 rounded-md flex items-center"
-                                                                    onClick={() => {
-                                                                        const codeElement = document.getElementById('selectedCountryCode');
-                                                                        if (codeElement) codeElement.textContent = item.code;
-                                                                        const popup = document.getElementById('countryCodePopup');
-                                                                        if (popup) popup.classList.add('hidden');
-                                                                    }}
-                                                                >
-                                                                    <span className="font-medium mr-2">{item.code}</span>
-                                                                    <span className="text-gray-600">{item.country}</span>
-                                                                </button>
-                                                            ))}
+                                                                            <button
+                                                                                key={index}
+                                                                                type="button"
+                                                                                className="country-option text-left p-2 hover:bg-gray-100 rounded-md flex items-center"
+                                                                                onClick={() => {
+                                                                                    const codeElement = document.getElementById('selectedCountryCode');
+                                                                                    if (codeElement) codeElement.textContent = item.code;
+                                                                                    const popup = document.getElementById('countryCodePopup');
+                                                                                    if (popup) popup.classList.add('hidden');
+                                                                                }}
+                                                                            >
+                                                                                <span className="font-medium mr-2">{item.code}</span>
+                                                                                <span className="text-gray-600">{item.country}</span>
+                                                                            </button>
+                                                                        ))}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <input
-                                                type="tel"
-                                                className="flex-1 p-3 border border-gray-300 border-l-0 rounded-r-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
-                                                placeholder="Enter your phone number"
+                                                        <input
+                                                            type="tel"
+                                                            className="flex-1 p-3 border border-gray-300 border-l-0 rounded-r-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+                                                            placeholder="Enter your phone number"
                                                 value={phoneNumber}
                                                 onChange={(e) => setPhoneNumber(e.target.value)}
-                                                required={location === 'phone'}
-                                            />
-                                        </div>
-                                    </div>
+                                                            required={location === 'phone'}
+                                                        />
+                                                    </div>
+                                                </div>
 
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-3">How would you like to meet? *</label>
