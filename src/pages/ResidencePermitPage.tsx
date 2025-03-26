@@ -31,8 +31,11 @@ export default function ResidencePermitPage() {
                 Expert guidance through your Italian residence permit application process with professional support every step of the way.
               </p>
               <a 
-                href="#contact-form" 
-                className="inline-block px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:-translate-y-1"
+                onClick={() => {
+                  const servicesSection = document.querySelector('#services-section');
+                  servicesSection?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="inline-block px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:-translate-y-1 cursor-pointer"
               >
                 Get Started
               </a>
@@ -52,7 +55,7 @@ export default function ResidencePermitPage() {
       </div>
       
       {/* Service Cards Section */}
-      <div className="py-16 bg-white">
+      <div id="services-section" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -66,7 +69,7 @@ export default function ResidencePermitPage() {
 
           {/* Card 1 - Consultancy */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div className="bg-white rounded-xl shadow-sm overflow-hidden  border border-gray-200">
               <div className="p-8 text-center">
                 <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-6 mx-auto">
                   <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -83,7 +86,7 @@ export default function ResidencePermitPage() {
             </div>
             
             {/* Card 2 - Document Collection */}
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div className="bg-white rounded-xl shadow-sm overflow-hidden  border border-gray-200">
               <div className="p-8 text-center">
                 <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mb-6 mx-auto">
                   <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,7 +103,7 @@ export default function ResidencePermitPage() {
             </div>
             
             {/* Card 3 - Application Submission */}
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
               <div className="p-8 text-center">
                 <div className="w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center mb-6 mx-auto">
                   <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -119,49 +122,7 @@ export default function ResidencePermitPage() {
         </div>
       </div>
 
-      {/* Call to Action Section */}
-      <div className="py-16 bg-gradient-to-r from-blue-600/5 to-indigo-600/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-blue-100/50">
-            <div className="flex flex-col md:flex-row">
-              <div className="md:w-3/5 p-8 md:p-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                  Get Expert Guidance - Book a Free Consultation
-                </h2>
-                <p className="text-lg text-gray-600 mb-8">
-                  Have questions about residence permits or immigration services?<br />
-                  Schedule a complimentary 30-minute consultation with our experts to discuss your specific needs.
-                </p>
-                <a
-                  href="/book-appointment"
-                  className="group inline-flex items-center px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg"
-                >
-                  <span>Schedule Your Free Consultation</span>
-                  <svg className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                  </svg>
-                </a>
-              </div>
-              <div className="md:w-2/5 bg-white  p-8 md:p-12 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="mb-6">
-                    <img 
-                      src={consult}
-                      alt="Consultation" 
-                      className="w-40 h-40 mx-auto object-contain [filter:brightness(0)_saturate(100%)_invert(39%)_sepia(98%)_saturate(1900%)_hue-rotate(206deg)_brightness(97%)_contrast(95%)]"
-                    />
-                  </div>
-                  <div className="bg-white/50   py-3 px-6   ">
-                    <p className="text-blue-800 font-semibold text-lg">
-                      30-Minute Free Consultation
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    
 
       {/* Flip Cards Section */}
       <div className="py-16 bg-white">
@@ -180,7 +141,7 @@ export default function ResidencePermitPage() {
             <div className="h-[450px] group perspective-1000">
               <div className="relative w-full h-full transition-transform duration-500 transform-style-preserve-3d group-hover:rotate-y-180">
                 {/* Front */}
-                <div className="card-face card-front absolute w-full h-full bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl shadow-lg p-8 flex items-center justify-center backface-hidden border border-blue-100">
+                <div className="card-face card-front absolute w-full h-full bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl shadow-sm p-8 flex items-center justify-center backface-hidden border border-blue-300">
                   <div className="text-center">
                     <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
                       <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -214,9 +175,9 @@ export default function ResidencePermitPage() {
             <div className="h-[450px] group perspective-1000">
               <div className="relative w-full h-full transition-transform duration-500 transform-style-preserve-3d group-hover:rotate-y-180">
                 {/* Front */}
-                <div className="card-face card-front absolute w-full h-full bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl shadow-lg p-8 flex items-center justify-center backface-hidden border border-green-100">
+                <div className="card-face card-front absolute w-full h-full bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl shadow-sm p-8 flex items-center justify-center backface-hidden border border-green-300">
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <div className="w-16 h-16 bg-green-200 rounded-full flex items-center justify-center mx-auto mb-6">
                       <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                       </svg>
@@ -255,7 +216,7 @@ export default function ResidencePermitPage() {
             <div className="h-[450px] group perspective-1000">
               <div className="relative w-full h-full transition-transform duration-500 transform-style-preserve-3d group-hover:rotate-y-180">
                 {/* Front */}
-                <div className="card-face card-front absolute w-full h-full bg-gradient-to-br from-purple-50 to-violet-100 rounded-2xl shadow-lg p-8 flex items-center justify-center backface-hidden border border-purple-100">
+                <div className="card-face card-front absolute w-full h-full bg-gradient-to-br from-purple-50 to-violet-100 rounded-2xl shadow-sm p-8 flex items-center justify-center backface-hidden border border-purple-300">
                   <div className="text-center">
                     <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
                       <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -338,7 +299,7 @@ export default function ResidencePermitPage() {
             {/* Entry Visa Card */}
             <div className="h-[400px] group perspective-1000">
               <div className="relative w-full h-full transition-transform duration-500 transform-style-preserve-3d group-hover:rotate-y-180">
-                <div className="card-face card-front absolute w-full h-full bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center backface-hidden border border-gray-200">
+                <div className="card-face card-front absolute w-full h-full bg-white rounded-2xl shadow-sm p-8 flex items-center justify-center backface-hidden border border-gray-200">
                   <div className="text-center">
                     <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
                       <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -365,7 +326,7 @@ export default function ResidencePermitPage() {
             {/* Income Requirements Card */}
             <div className="h-[400px] group perspective-1000">
               <div className="relative w-full h-full transition-transform duration-500 transform-style-preserve-3d group-hover:rotate-y-180">
-                <div className="card-face card-front absolute w-full h-full bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center backface-hidden border border-gray-200">
+                <div className="card-face card-front absolute w-full h-full bg-white rounded-2xl shadow-sm p-8 flex items-center justify-center backface-hidden border border-gray-200">
                   <div className="text-center">
                     <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-6">
                       <svg className="w-8 h-8 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -397,7 +358,7 @@ export default function ResidencePermitPage() {
             {/* Accommodation Card */}
             <div className="h-[400px] group perspective-1000">
               <div className="relative w-full h-full transition-transform duration-500 transform-style-preserve-3d group-hover:rotate-y-180">
-                <div className="card-face card-front absolute w-full h-full bg-white rounded-2xl shadow-lg p-8 flex items-center justify-center backface-hidden border border-gray-200">
+                <div className="card-face card-front absolute w-full h-full bg-white rounded-2xl shadow-sm p-8 flex items-center justify-center backface-hidden border border-gray-200">
                   <div className="text-center">
                     <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
                       <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -422,7 +383,7 @@ export default function ResidencePermitPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
             <div className="p-8">
               <div className="max-w-4xl mx-auto">
                 <div className="flex flex-col items-center md:flex-row md:items-start">
@@ -475,7 +436,7 @@ export default function ResidencePermitPage() {
               </div>
             </div>
             
-            <div className="bg-gray-50 py-6 px-8 text-center">
+            <div className="bg-gray-100 py-6 px-8 text-center">
               <button
                 onClick={() => {
                   const contactForm = document.querySelector('#contact-form');
@@ -638,7 +599,7 @@ export default function ResidencePermitPage() {
       {/* Income Requirements Section */}
       <div className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200">
+          <div className="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-200">
             <div className="p-8 md:p-12">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
@@ -728,7 +689,7 @@ export default function ResidencePermitPage() {
       {/* Problems Section */}
       <div className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200">
+          <div className="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-200">
             <div className="p-8 md:p-12">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
@@ -739,7 +700,7 @@ export default function ResidencePermitPage() {
                   {/* Notice Card */}
                   <div className="h-[400px] group perspective-1000">
                     <div className="relative w-full h-full transition-transform duration-500 transform-style-preserve-3d group-hover:rotate-y-180">
-                      <div className="card-face card-front absolute w-full h-full bg-gradient-to-br from-red-50 to-rose-100 rounded-2xl shadow-lg p-8 flex items-center justify-center backface-hidden border border-red-200">
+                      <div className="card-face card-front absolute w-full h-full bg-gradient-to-br from-red-50 to-rose-100 rounded-2xl shadow-md p-8 flex items-center justify-center backface-hidden border border-red-200">
                         <div className="text-center">
                           <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
                             <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -767,7 +728,7 @@ export default function ResidencePermitPage() {
                   {/* Refusal Card */}
                   <div className="h-[400px] group perspective-1000">
                     <div className="relative w-full h-full transition-transform duration-500 transform-style-preserve-3d group-hover:rotate-y-180">
-                      <div className="card-face card-front absolute w-full h-full bg-gradient-to-br from-yellow-50 to-amber-100 rounded-2xl shadow-lg p-8 flex items-center justify-center backface-hidden border border-yellow-200">
+                      <div className="card-face card-front absolute w-full h-full bg-gradient-to-br from-yellow-50 to-amber-100 rounded-2xl shadow-md p-8 flex items-center justify-center backface-hidden border border-yellow-200">
                         <div className="text-center">
                           <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-6">
                             <svg className="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -794,9 +755,9 @@ export default function ResidencePermitPage() {
                   {/* Revocation Card */}
                   <div className="h-[400px] group perspective-1000">
                     <div className="relative w-full h-full transition-transform duration-500 transform-style-preserve-3d group-hover:rotate-y-180">
-                      <div className="card-face card-front absolute w-full h-full bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl shadow-lg p-8 flex items-center justify-center backface-hidden border border-green-200">
+                      <div className="card-face card-front absolute w-full h-full bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl shadow-md p-8 flex items-center justify-center backface-hidden border border-green-200">
                         <div className="text-center">
-                          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                          <div className="w-16 h-16 bg-green-200 rounded-full flex items-center justify-center mx-auto mb-6">
                             <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                             </svg>
@@ -862,7 +823,7 @@ export default function ResidencePermitPage() {
       {/* Law Firm Section */}
       <div className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl shadow-lg overflow-hidden border border-blue-200">
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl shadow-sm overflow-hidden border border-blue-200">
             <div className="p-8 md:p-12">
               <div className="max-w-4xl mx-auto">
                 <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
@@ -984,6 +945,50 @@ export default function ResidencePermitPage() {
         </div>
       </div>
 
+      {/* Call to Action Section */}
+      <div className="py-16 bg-gradient-to-r from-blue-600/5 to-indigo-600/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-2xl shadow-sm overflow-hidden border border-blue-100/50">
+            <div className="flex flex-col md:flex-row">
+              <div className="md:w-3/5 p-8 md:p-12">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  Get Expert Guidance - Book a Free Consultation
+                </h2>
+                <p className="text-lg text-gray-600 mb-8">
+                  Have questions about residence permits or immigration services?<br />
+                  Schedule a complimentary 30-minute consultation with our experts to discuss your specific needs.
+                </p>
+                <a
+                  href="/book-appointment"
+                  className="group inline-flex items-center px-8 py-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg"
+                >
+                  <span>Schedule Your Free Consultation</span>
+                  <svg className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+              <div className="md:w-2/5 bg-white  p-8 md:p-12 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="mb-6">
+                    <img 
+                      src={consult}
+                      alt="Consultation" 
+                      className="w-40 h-40 mx-auto object-contain [filter:brightness(0)_saturate(100%)_invert(39%)_sepia(98%)_saturate(1900%)_hue-rotate(206deg)_brightness(97%)_contrast(95%)]"
+                    />
+                  </div>
+                  <div className="bg-white/50   py-3 px-6   ">
+                    <p className="text-blue-800 font-semibold text-lg">
+                      30-Minute Free Consultation
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* FAQ Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-12">
         <div className="bg-white rounded-[40px] border border-gray-300 overflow-hidden">
@@ -1014,6 +1019,144 @@ export default function ResidencePermitPage() {
                   </button>
                   <div className="hidden p-4 bg-gray-50">
                     <p className="text-gray-700">The residence permit is the administrative document that allows the foreign citizen to reside in Italy and is used to certify their legal presence in the country. It is mandatory that the foreign citizen with an expired visa always has the permit or the receipt of their request with them.</p>
+                  </div>
+                </div>
+
+                {/* FAQ Item 1 */}
+                <div className="border border-gray-200 rounded-lg">
+                  <button 
+                    onClick={(e) => {
+                      const content = e.currentTarget.nextElementSibling;
+                      const icon = e.currentTarget.querySelector('svg');
+                      if (content && icon) {
+                        content.classList.toggle('hidden');
+                        icon.classList.toggle('rotate-180');
+                      }
+                    }}
+                    className="w-full flex justify-between items-center p-4 hover:bg-gray-50 transition-colors"
+                  >
+                    <h3 className="text-lg font-semibold text-gray-800">What is a residence permit?</h3>
+                    <svg className="w-5 h-5 text-gray-500 transition-transform duration-200" viewBox="0 0 320 512">
+                      <path d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                  <div className="hidden p-4 bg-gray-50">
+                    <p className="text-gray-700">The residence permit is the administrative document that allows the foreign citizen to reside in Italy and is used to certify their legal presence in the country. It is mandatory that the foreign citizen with an expired visa always has the permit or the receipt of their request with them.</p>
+                  </div>
+                </div>
+
+                {/* FAQ Item 2 */}
+                <div className="border border-gray-200 rounded-lg">
+                  <button 
+                    onClick={(e) => {
+                      const content = e.currentTarget.nextElementSibling;
+                      const icon = e.currentTarget.querySelector('svg');
+                      if (content && icon) {
+                        content.classList.toggle('hidden');
+                        icon.classList.toggle('rotate-180');
+                      }
+                    }}
+                    className="w-full flex justify-between items-center p-4 hover:bg-gray-50 transition-colors"
+                  >
+                    <h3 className="text-lg font-semibold text-gray-800">How long does it take to apply for a residence permit?</h3>
+                    <svg className="w-5 h-5 text-gray-500 transition-transform duration-200" viewBox="0 0 320 512">
+                      <path d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                  <div className="hidden p-4 bg-gray-50">
+                    <p className="text-gray-700">Anyone coming from abroad and wishing to remain in Italian territory is required to submit the application for a residence permit within a maximum period of 8 working days from arrival.</p>
+                  </div>
+                </div>
+
+                {/* FAQ Item 3 */}
+                <div className="border border-gray-200 rounded-lg">
+                  <button 
+                    onClick={(e) => {
+                      const content = e.currentTarget.nextElementSibling;
+                      const icon = e.currentTarget.querySelector('svg');
+                      if (content && icon) {
+                        content.classList.toggle('hidden');
+                        icon.classList.toggle('rotate-180');
+                      }
+                    }}
+                    className="w-full flex justify-between items-center p-4 hover:bg-gray-50 transition-colors"
+                  >
+                    <h3 className="text-lg font-semibold text-gray-800">Where do you apply for a residence permit?</h3>
+                    <svg className="w-5 h-5 text-gray-500 transition-transform duration-200" viewBox="0 0 320 512">
+                      <path d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                  <div className="hidden p-4 bg-gray-50">
+                    <p className="text-gray-700">The application for the issue or renewal of a residence permit must be submitted at the post office. The competent Police Headquarters is identified with reference to the foreigner's place of residence. In certain circumstances, it is possible to submit the application directly at the Police Headquarters.</p>
+                  </div>
+                </div>
+
+                {/* FAQ Item 4 */}
+                <div className="border border-gray-200 rounded-lg">
+                  <button 
+                    onClick={(e) => {
+                      const content = e.currentTarget.nextElementSibling;
+                      const icon = e.currentTarget.querySelector('svg');
+                      if (content && icon) {
+                        content.classList.toggle('hidden');
+                        icon.classList.toggle('rotate-180');
+                      }
+                    }}
+                    className="w-full flex justify-between items-center p-4 hover:bg-gray-50 transition-colors"
+                  >
+                    <h3 className="text-lg font-semibold text-gray-800">What is the postal receipt for the residence permit application for?</h3>
+                    <svg className="w-5 h-5 text-gray-500 transition-transform duration-200" viewBox="0 0 320 512">
+                      <path d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                  <div className="hidden p-4 bg-gray-50">
+                    <p className="text-gray-700">The application receipt constitutes, until the actual delivery of the residence permit, a document that certifies the regularity of the foreigner's stay in Italy. The latter is required to carefully keep the receipt and present it at the Police Headquarters when collecting the residence permit. To check the processing status of the application, the foreigner can consult the website www.portaleimmigrazione.it and, through the website http://questure.poliziadistato.it/stranieri/?mime=IT, can check the availability of the offices for collecting the residence permit.</p>
+                  </div>
+                </div>
+
+                {/* FAQ Item 5 */}
+                <div className="border border-gray-200 rounded-lg">
+                  <button 
+                    onClick={(e) => {
+                      const content = e.currentTarget.nextElementSibling;
+                      const icon = e.currentTarget.querySelector('svg');
+                      if (content && icon) {
+                        content.classList.toggle('hidden');
+                        icon.classList.toggle('rotate-180');
+                      }
+                    }}
+                    className="w-full flex justify-between items-center p-4 hover:bg-gray-50 transition-colors"
+                  >
+                    <h3 className="text-lg font-semibold text-gray-800">Can I work with the postal receipt of the request or renewal of the residence permit?</h3>
+                    <svg className="w-5 h-5 text-gray-500 transition-transform duration-200" viewBox="0 0 320 512">
+                      <path d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                  <div className="hidden p-4 bg-gray-50">
+                    <p className="text-gray-700">Yes, with the postal receipt of issue or renewal of the residence permit you can work.</p>
+                  </div>
+                </div>
+
+                {/* FAQ Item 6 */}
+                <div className="border border-gray-200 rounded-lg">
+                  <button 
+                    onClick={(e) => {
+                      const content = e.currentTarget.nextElementSibling;
+                      const icon = e.currentTarget.querySelector('svg');
+                      if (content && icon) {
+                        content.classList.toggle('hidden');
+                        icon.classList.toggle('rotate-180');
+                      }
+                    }}
+                    className="w-full flex justify-between items-center p-4 hover:bg-gray-50 transition-colors"
+                  >
+                    <h3 className="text-lg font-semibold text-gray-800">Can I travel with a postal receipt?</h3>
+                    <svg className="w-5 h-5 text-gray-500 transition-transform duration-200" viewBox="0 0 320 512">
+                      <path d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                  <div className="hidden p-4 bg-gray-50">
+                    <p className="text-gray-700">Yes, those who are waiting for the renewal of their residence permit can leave Italy to go to their country with a direct flight and return by showing only the receipt from the Italian Post Office certifying the submission of the application for the residence permit or residence card.</p>
                   </div>
                 </div>
 
