@@ -1,0 +1,81 @@
+.auth-input {
+  @apply appearance-none rounded-lg relative block w-full px-4 py-3 border border-gray-200 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out bg-white/50 backdrop-blur-sm;
+}
+
+.auth-password-container {
+  @apply relative;
+}
+
+.auth-password-input {
+  @apply auth-input pr-12;
+}
+
+.auth-password-toggle {
+  @apply absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 cursor-pointer p-1 rounded-full hover:bg-gray-100 transition-colors duration-200;
+}
+
+.auth-button {
+  @apply relative w-full flex justify-center py-3 px-6 border border-transparent text-base font-semibold rounded-lg text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transform transition-all duration-200 ease-in-out hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg;
+}
+
+.auth-link {
+  @apply text-blue-600 hover:text-blue-800 transition-colors duration-200 font-medium;
+}
+
+.auth-container {
+  @apply min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-blue-50 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden;
+}
+
+.auth-form-container {
+  @apply max-w-md w-full space-y-8 bg-white/80 backdrop-blur-lg p-8 rounded-2xl shadow-xl border border-white/20 relative z-10;
+}
+
+.auth-checkbox {
+  @apply h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded transition-all duration-200 ease-in-out cursor-pointer;
+}
+
+.auth-card-pattern {
+  @apply absolute inset-0 bg-gradient-to-r from-blue-100/20 to-blue-50/20 z-0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.1) 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+.auth-title {
+  @apply text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800;
+}
+
+.auth-subtitle {
+  @apply text-xl text-gray-600 font-light;
+}
+
+.auth-alert {
+  @apply px-4 py-3 rounded-lg shadow-sm border transition-all duration-200 ease-in-out;
+}
+
+.auth-alert-error {
+  @apply bg-red-50 border-red-200 text-red-700;
+}
+
+.auth-alert-success {
+  @apply bg-green-50 border-green-200 text-green-700;
+}
+
+.auth-form-section {
+  @apply space-y-6 relative;
+}
+
+.auth-input-group {
+  @apply space-y-1;
+}
+
+.auth-label {
+  @apply text-sm font-medium text-gray-700;
+}
+
+.auth-terms {
+  @apply text-sm text-gray-600 mt-1;
+}
+
+.auth-divider {
+  @apply border-t border-gray-200 my-6;
+}

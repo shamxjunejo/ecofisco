@@ -1,11 +1,11 @@
 export interface Service {
   id: string;
   name: string;
-  price: number; // in cents
   description: string;
   features: string[];
   image?: string;
-  stripePriceId?: string;
+  userId?: string;
+  practiceId?: string;
 }
 
 export interface CheckoutSession {
@@ -15,5 +15,10 @@ export interface CheckoutSession {
 
 export interface PaymentStatus {
   status: 'success' | 'error' | 'pending';
+  message?: string;
+}
+
+export interface ServiceStatus {
+  status: 'pending' | 'approved' | 'rejected';
   message?: string;
 } 

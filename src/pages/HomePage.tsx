@@ -1,6 +1,17 @@
 import { useState, useEffect } from 'react';
 import './textAnimation.css';
-import italy from "../assets/italy.png";
+import italy from "../assets/flags/italy.png";
+import france from "../assets/flags/france.png";
+import morocco from "../assets/flags/morocco.png";
+import spain from "../assets/flags/spain.png";
+import eng from "../assets/flags/eng.png";
+import bangla from "../assets/flags/bangla.png";
+
+
+
+
+
+
 import hero from "../assets/hero.jpg";
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../firebase/config';
@@ -541,7 +552,7 @@ export default function HomePage() {
                 <h3 className="text-xl font-semibold text-blue-900 mb-4">Spain</h3>
                 <div className="rounded-[24px] overflow-hidden flex justify-center">
                   <img
-                    src={italy}
+                    src={spain}
                     alt="Spanish Immigration Expert in Italy"
                     className="w-[35%] border border-gray-500 rounded-[100px]"
                   />
@@ -552,7 +563,7 @@ export default function HomePage() {
                 <h3 className="text-xl font-semibold text-blue-900 mb-4">England</h3>
                 <div className="rounded-[24px] overflow-hidden flex justify-center">
                   <img
-                    src={italy}
+                    src={eng}
                     alt="English Immigration Expert in Italy"
                     className="w-[35%] border border-gray-500 rounded-[100px]"
                   />
@@ -563,7 +574,7 @@ export default function HomePage() {
                 <h3 className="text-xl font-semibold text-blue-900 mb-4">Morocco</h3>
                 <div className="rounded-[24px] overflow-hidden flex justify-center">
                   <img
-                    src={italy}
+                    src={morocco}
                     alt="Moroccan Immigration Expert in Italy"
                     className="w-[35%] border border-gray-500 rounded-[100px]"
                   />
@@ -574,7 +585,7 @@ export default function HomePage() {
                 <h3 className="text-xl font-semibold text-blue-900 mb-4">France</h3>
                 <div className="rounded-[24px] overflow-hidden flex justify-center">
                   <img
-                    src={italy}
+                    src={france}
                     alt="French Immigration Expert in Italy"
                     className="w-[35%] border border-gray-500 rounded-[100px]"
                   />
@@ -585,7 +596,7 @@ export default function HomePage() {
                 <h3 className="text-xl font-semibold text-blue-900 mb-4">Bangladesh</h3>
                 <div className="rounded-[24px] overflow-hidden flex justify-center">
                   <img
-                    src={italy}
+                    src={bangla}
                     alt="Bangladeshi Immigration Expert in Italy"
                     className="w-[35%] border border-gray-500 rounded-[100px]"
                   />

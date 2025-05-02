@@ -1,38 +1,57 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase/config';
 import SEO from '../components/SEO';
 import { Service } from '../types/services';
-import { SERVICE_PRICES, formatPrice } from '../config/stripe';
-import { createCheckoutSession } from '../services/stripe';
-import { stripePromise } from '../config/stripe';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import { createPractice } from '../services/practice';
+import { toast } from 'react-hot-toast';
 
 export default function ServicesPage() {
+  const navigate = useNavigate();
+  const [user, loading] = useAuthState(auth);
   const [loadingStates, setLoadingStates] = useState<{ [key: string]: boolean }>({});
   const [hoveredService, setHoveredService] = useState<string | null>(null);
+  const [expandedServices, setExpandedServices] = useState<{ [key: string]: boolean }>({});
+  const VISIBLE_FEATURES = 3;
 
-  const handlePurchase = async (service: Service) => {
+  const handleAddService = async (service: Service) => {
     try {
-      setLoadingStates(prev => ({ ...prev, [service.id]: true }));
-      const { sessionId } = await createCheckoutSession(service);
-      const stripe = await stripePromise;
-      
-      if (stripe) {
-        const { error } = await stripe.redirectToCheckout({ sessionId });
-        if (error) {
-          console.error('Stripe checkout error:', error);
-          setLoadingStates(prev => ({ ...prev, [service.id]: false }));
-        }
+      // Check if user is authenticated
+      if (!user) {
+        // Store the service ID in session storage to redirect back after signup
+        sessionStorage.setItem('pendingService', service.id);
+        navigate('/register', { state: { message: 'Please sign up to add this service.' } });
+        return;
       }
+
+      setLoadingStates(prev => ({ ...prev, [service.id]: true }));
+
+      // Create practice
+      const practiceId = await createPractice(user.uid, service.id);
+      console.log('Practice created with ID:', practiceId);
+
+      toast.success('Service added to your dashboard!');
+      navigate('/dashboard?tab=pending');
     } catch (error) {
-      console.error('Payment error:', error);
+      console.error('Error adding service:', error);
+      toast.error('Failed to add service. Please try again.');
       setLoadingStates(prev => ({ ...prev, [service.id]: false }));
     }
+  };
+
+  const toggleFeatures = (serviceId: string) => {
+    setExpandedServices(prev => ({
+      ...prev,
+      [serviceId]: !prev[serviceId]
+    }));
   };
 
   const services: Service[] = [
     {
       id: 'vat_management',
       name: 'VAT Management',
-      price: SERVICE_PRICES.VAT_MANAGEMENT,
       description: 'Opening, modification & closure assistance for traders, artisans, and freelancers.',
       features: [
         'VAT number registration',
@@ -46,7 +65,6 @@ export default function ServicesPage() {
     {
       id: 'tax_declarations',
       name: 'Tax Declarations',
-      price: SERVICE_PRICES.TAX_DECLARATIONS,
       description: 'Expert assistance with Single Model PF and 730 Tax Declarations.',
       features: [
         'Single Model PF preparation',
@@ -60,7 +78,6 @@ export default function ServicesPage() {
     {
       id: 'immigration_services',
       name: 'Immigration Services',
-      price: SERVICE_PRICES.IMMIGRATION_SERVICES,
       description: 'Complete support for residence permits, citizenship, and family reunification.',
       features: [
         'Residence permit applications',
@@ -74,7 +91,6 @@ export default function ServicesPage() {
     {
       id: 'inail_services',
       name: 'INAIL Services',
-      price: SERVICE_PRICES.INAIL_SERVICES,
       description: 'Complete management of work insurance and safety compliance.',
       features: [
         'Work insurance registration',
@@ -88,7 +104,6 @@ export default function ServicesPage() {
     {
       id: 'inps_services',
       name: 'INPS Services',
-      price: SERVICE_PRICES.INPS_SERVICES,
       description: 'Comprehensive social security and benefits management.',
       features: [
         'Social security registration',
@@ -102,7 +117,6 @@ export default function ServicesPage() {
     {
       id: 'digital_identity',
       name: 'Digital Identity',
-      price: SERVICE_PRICES.DIGITAL_IDENTITY,
       description: 'Setup and management of PEC and SPID digital identity services.',
       features: [
         'PEC setup',
@@ -125,7 +139,7 @@ export default function ServicesPage() {
       <div className="bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl">
+            <h1 className="text-4xl font-bold text-gray-600 sm:text-5xl">
               Our Services
             </h1>
             <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
@@ -162,13 +176,8 @@ export default function ServicesPage() {
                   </div>
                   
                   <div className="p-6">
-                    <div className="mb-6">
-                      <p className="text-3xl font-bold text-blue-600">{formatPrice(service.price)}</p>
-                      <p className="text-sm text-gray-500 mt-1">One-time payment</p>
-                    </div>
-                    
                     <div className="space-y-3 mb-6">
-                      {service.features.slice(0, 3).map((feature, index) => (
+                      {service.features.slice(0, expandedServices[service.id] ? undefined : VISIBLE_FEATURES).map((feature, index) => (
                         <div key={index} className="flex items-center text-gray-600">
                           <svg className="w-5 h-5 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
@@ -176,13 +185,28 @@ export default function ServicesPage() {
                           <span className="text-sm">{feature}</span>
                         </div>
                       ))}
-                      {service.features.length > 3 && (
-                        <p className="text-sm text-blue-600">+{service.features.length - 3} more features</p>
+                      {service.features.length > VISIBLE_FEATURES && (
+                        <button
+                          onClick={() => toggleFeatures(service.id)}
+                          className="flex items-center text-blue-600 text-sm hover:text-blue-800 transition-colors"
+                        >
+                          {expandedServices[service.id] ? (
+                            <>
+                              <ChevronUp className="w-4 h-4 mr-1" />
+                              Show Less
+                            </>
+                          ) : (
+                            <>
+                              <ChevronDown className="w-4 h-4 mr-1" />
+                              +{service.features.length - VISIBLE_FEATURES} more features
+                            </>
+                          )}
+                        </button>
                       )}
                     </div>
 
                     <button
-                      onClick={() => handlePurchase(service)}
+                      onClick={() => handleAddService(service)}
                       disabled={loadingStates[service.id]}
                       className={`w-full bg-blue-600 text-white px-6 py-3 rounded-xl text-sm font-medium hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 ${
                         loadingStates[service.id] ? 'opacity-50 cursor-not-allowed' : ''
@@ -197,7 +221,7 @@ export default function ServicesPage() {
                           Processing...
                         </span>
                       ) : (
-                        'Purchase Now'
+                        'Add to Dashboard'
                       )}
                     </button>
                   </div>
