@@ -1,5 +1,5 @@
 import { db } from '../firebase/config';
-import { collection, query, where, getDocs, doc, updateDoc, addDoc, deleteDoc, getDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, query, where, getDocs, doc, updateDoc, addDoc, deleteDoc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { Practice, PracticeUpdate } from '../types/practice';
 import { SERVICE_REQUIREMENTS } from '../config/serviceRequirements';
 
@@ -27,38 +27,32 @@ export const getPractice = async (practiceId: string): Promise<Practice | null> 
   return null;
 };
 
-export const updatePractice = async (practiceId: string, updates: PracticeUpdate): Promise<void> => {
-  const practiceRef = doc(db, 'practices', practiceId);
-  await updateDoc(practiceRef, {
-    ...updates,
-    updatedAt: serverTimestamp()
-  });
+export const updatePractice = async (practiceId: string, updates: Partial<Practice>): Promise<void> => {
+  try {
+    const practiceRef = doc(db, 'practices', practiceId);
+    await updateDoc(practiceRef, {
+      ...updates,
+      updatedAt: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Error updating practice:', error);
+    throw error;
+  }
 };
 
-export const createPractice = async (userId: string, serviceId: string): Promise<string> => {
+export const createPractice = async (practice: Omit<Practice, 'id' | 'createdAt' | 'updatedAt'>): Promise<string> => {
   try {
-    const service = SERVICE_REQUIREMENTS[serviceId];
-    if (!service) {
-      throw new Error('Invalid service ID');
-    }
-
-    const practiceData = {
-      userId,
-      serviceId,
-      serviceName: service.title,
+    const practiceRef = doc(collection(db, 'practices'));
+    const newPractice: Practice = {
+      ...practice,
+      id: practiceRef.id,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
       status: 'pending',
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
-      documents: [],
-      notes: '',
-      progress: 0,
-      lastUpdatedBy: userId,
-      paymentStatus: 'unpaid',
-      paymentReminderSent: false
+      progress: 0
     };
-
-    const docRef = await addDoc(collection(db, 'practices'), practiceData);
-    return docRef.id;
+    await setDoc(practiceRef, newPractice);
+    return practiceRef.id;
   } catch (error) {
     console.error('Error creating practice:', error);
     throw error;

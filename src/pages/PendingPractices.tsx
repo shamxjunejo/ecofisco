@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db } from '../firebase/config';
-import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { collection, query, where, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { Practice, PracticeDocument } from '../types/practice';
 import { SERVICE_REQUIREMENTS } from '../config/serviceRequirements';
 
@@ -21,6 +21,10 @@ import {
   FileX
 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
+
+
+
+// Loading Practice
 
 export default function PendingPractices() {
   const [user] = useAuthState(auth);
@@ -51,6 +55,8 @@ export default function PendingPractices() {
         }
       }
     };
+
+       // Loading proactices
 
     loadPractices();
   }, [user]);
@@ -106,6 +112,19 @@ export default function PendingPractices() {
       toast.success('Document deleted successfully');
     } catch (err) {
       toast.error('Failed to delete document');
+      console.error(err);
+    }
+  };
+
+  const handlePracticeDelete = async (practiceId: string) => {
+    try {
+      const practiceRef = doc(db, 'practices', practiceId);
+      await deleteDoc(practiceRef);
+      
+      setPractices(practices.filter(p => p.id !== practiceId));
+      toast.success('Practice deleted successfully');
+    } catch (err) {
+      toast.error('Failed to delete practice');
       console.error(err);
     }
   };
@@ -195,6 +214,15 @@ export default function PendingPractices() {
                           <Clock className="w-5 h-5 text-yellow-500" />
                           <span className="text-yellow-600 font-medium">Pending</span>
                         </div>
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handlePracticeDelete(practice.id);
+                          }}
+                          className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        >
+                          <Trash2 className="w-5 h-5" />
+                        </button>
                         <button className="text-gray-400 hover:text-gray-600">
                           {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
                         </button>

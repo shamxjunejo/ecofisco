@@ -74,6 +74,7 @@ export default function Dashboard({ setMobileMenuOpen }: DashboardProps) {
   const [userName, setUserName] = useState('User');
   const [userInitials, setUserInitials] = useState('U');
   const [currentScreen, setCurrentScreen] = useState<Screen>('home');
+  const [screenHistory, setScreenHistory] = useState<Screen[]>(['home']);
   const [profile, setProfile] = useState<Profile>({
     firstName: '',
     lastName: '',
@@ -203,10 +204,21 @@ export default function Dashboard({ setMobileMenuOpen }: DashboardProps) {
   const handleMenuClick = (item: MenuItem) => {
     if (item.action) {
       item.action();
-    } else {
-      setCurrentScreen(item.screen || 'home');
+    } else if (item.screen) {
+      setScreenHistory(prev => [...prev, item.screen as Screen]);
+      setCurrentScreen(item.screen);
     }
     setShowSidebar(false);
+  };
+
+  const handleBack = () => {
+    if (screenHistory.length > 1) {
+      const newHistory = [...screenHistory];
+      newHistory.pop(); // Remove current screen
+      const previousScreen = newHistory[newHistory.length - 1];
+      setScreenHistory(newHistory);
+      setCurrentScreen(previousScreen);
+    }
   };
 
   const handleProfileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -882,7 +894,19 @@ export default function Dashboard({ setMobileMenuOpen }: DashboardProps) {
       <div className="flex-1 lg:ml-64 flex flex-col min-h-screen">
         {/* Mobile Header */}
         <div className="lg:hidden bg-white shadow-md p-4 flex justify-between items-center">
-          <h2 className="text-xl font-bold text-blue-900">E-Co Fisco</h2>
+          <div className="flex items-center">
+            {screenHistory.length > 1 && (
+              <button
+                onClick={handleBack}
+                className="mr-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+            )}
+            <h2 className="text-xl font-bold text-blue-900">E-Co Fisco</h2>
+          </div>
           <div className="flex items-center space-x-4">
             <div className="relative">
               <div className="notification-badge">1</div>
@@ -897,6 +921,16 @@ export default function Dashboard({ setMobileMenuOpen }: DashboardProps) {
         {/* Desktop Header */}
         <div className="hidden lg:flex bg-white shadow-md p-4 justify-between items-center">
           <div className="flex items-center">
+            {screenHistory.length > 1 && (
+              <button
+                onClick={handleBack}
+                className="mr-4 p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+            )}
             <h3 className="text-xl font-bold text-blue-700">
               {currentScreen === 'home' ? 'Dashboard' : 
                currentScreen === 'ongoing-practices' ? 'Ongoing Practices' :

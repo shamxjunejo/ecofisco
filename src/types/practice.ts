@@ -7,7 +7,7 @@ export interface Practice {
   createdAt: string;
   updatedAt: string;
   documents: PracticeDocument[];
-  notes: string;
+  notes?: string;
   progress: number;
   estimatedCompletionDate?: string;
   lastUpdatedBy: string;
