@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db } from '../firebase/config';
-import { doc, getDoc, setDoc, deleteDoc, addDoc, collection } from 'firebase/firestore';
+import { doc, getDoc, setDoc, deleteDoc, addDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { updatePassword, EmailAuthProvider, reauthenticateWithCredential, deleteUser } from 'firebase/auth';
 import { 
   LayoutDashboard, 
@@ -75,6 +75,10 @@ export default function Dashboard({ setMobileMenuOpen }: DashboardProps) {
   const [userInitials, setUserInitials] = useState('U');
   const [currentScreen, setCurrentScreen] = useState<Screen>('home');
   const [screenHistory, setScreenHistory] = useState<Screen[]>(['home']);
+  const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const [showNotificationDropdown, setShowNotificationDropdown] = useState(false);
+  const userDropdownRef = useRef<HTMLDivElement>(null);
+  const notificationDropdownRef = useRef<HTMLDivElement>(null);
   const [profile, setProfile] = useState<Profile>({
     firstName: '',
     lastName: '',
@@ -103,6 +107,11 @@ export default function Dashboard({ setMobileMenuOpen }: DashboardProps) {
     userName: '',
     createdAt: '',
     status: 'pending'
+  });
+  const [practiceStats, setPracticeStats] = useState({
+    pending: 0,
+    ongoing: 0,
+    completed: 0
   });
 
   useEffect(() => {
@@ -152,6 +161,90 @@ export default function Dashboard({ setMobileMenuOpen }: DashboardProps) {
     }
   }, [profile.firstName, profile.lastName, user]);
 
+  useEffect(() => {
+    const fetchPracticeCounts = async () => {
+      if (!user) return;
+
+      try {
+        const practicesRef = collection(db, 'practices');
+        
+        // Get pending practices count
+        const pendingQuery = query(practicesRef, 
+          where('userId', '==', user.uid),
+          where('status', '==', 'pending')
+        );
+        const pendingSnapshot = await getDocs(pendingQuery);
+        
+        // Get ongoing practices count
+        const ongoingQuery = query(practicesRef, 
+          where('userId', '==', user.uid),
+          where('status', '==', 'ongoing')
+        );
+        const ongoingSnapshot = await getDocs(ongoingQuery);
+        
+        // Get completed practices count
+        const completedQuery = query(practicesRef, 
+          where('userId', '==', user.uid),
+          where('status', '==', 'completed')
+        );
+        const completedSnapshot = await getDocs(completedQuery);
+
+        setPracticeStats({
+          pending: pendingSnapshot.size,
+          ongoing: ongoingSnapshot.size,
+          completed: completedSnapshot.size
+        });
+      } catch (error) {
+        console.error('Error fetching practice counts:', error);
+      }
+    };
+
+    fetchPracticeCounts();
+  }, [user]);
+
+  // Add click outside handler
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (userDropdownRef.current && !userDropdownRef.current.contains(event.target as Node)) {
+        setShowUserDropdown(false);
+      }
+      if (notificationDropdownRef.current && !notificationDropdownRef.current.contains(event.target as Node)) {
+        setShowNotificationDropdown(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleNotificationClick = () => {
+    setShowNotificationDropdown(!showNotificationDropdown);
+    if (!showNotificationDropdown) {
+      setShowUserDropdown(false);
+    }
+  };
+
+  const handleUserAvatarClick = () => {
+    setShowUserDropdown(!showUserDropdown);
+    if (!showUserDropdown) {
+      setShowNotificationDropdown(false);
+    }
+  };
+
+  const navigateToNotifications = () => {
+    setCurrentScreen('notifications');
+    setScreenHistory(prev => [...prev, 'notifications']);
+    setShowNotificationDropdown(false);
+  };
+
+  const navigateToProfile = () => {
+    setCurrentScreen('profile');
+    setScreenHistory(prev => [...prev, 'profile']);
+    setShowUserDropdown(false);
+  };
+
   const handleLogout = () => {
     auth.signOut();
   };
@@ -168,21 +261,21 @@ export default function Dashboard({ setMobileMenuOpen }: DashboardProps) {
 
   const stats = [
     { 
-      value: '0', 
+      value: practiceStats.pending.toString(), 
       label: 'Pending practices',
       icon: Clock,
       color: 'from-amber-400 to-orange-500',
       textColor: 'text-orange-600'
     },
     { 
-      value: '0', 
+      value: practiceStats.ongoing.toString(), 
       label: 'Ongoing practices',
       icon: Activity,
       color: 'from-blue-400 to-blue-600',
       textColor: 'text-blue-600'
     },
     { 
-      value: '1', 
+      value: practiceStats.completed.toString(), 
       label: 'Completed procedures',
       icon: CheckCircle,
       color: 'from-green-400 to-green-600',
@@ -943,12 +1036,58 @@ export default function Dashboard({ setMobileMenuOpen }: DashboardProps) {
             </h3>
           </div>
           <div className="flex items-center space-x-4">
-            <div className="relative">
-              <div className="notification-badge">1</div>
-              <Bell className="text-gray-400" size={24} />
+            <div className="relative" ref={notificationDropdownRef}>
+              <button 
+                onClick={handleNotificationClick}
+                className="relative hover:bg-gray-100 p-2 rounded-full transition-colors"
+              >
+                <div className="notification-badge">1</div>
+                <Bell className="text-gray-400" size={24} />
+              </button>
+              
+              {/* Notification Dropdown */}
+              {showNotificationDropdown && (
+                <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg py-2 z-50">
+                  <div className="px-4 py-2 border-b border-gray-100">
+                    <h3 className="text-lg font-semibold text-gray-900">Notifications</h3>
+                  </div>
+                  <div className="max-h-96 overflow-y-auto">
+                    <div className="px-4 py-3 hover:bg-gray-50 cursor-pointer" onClick={navigateToNotifications}>
+                      <p className="text-sm font-medium text-gray-900">New message from support</p>
+                      <p className="text-xs text-gray-500 mt-1">Click to view all notifications</p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
-            <div className="user-avatar">
-              {userInitials}
+            
+            <div className="relative" ref={userDropdownRef}>
+              <button 
+                onClick={handleUserAvatarClick}
+                className="user-avatar hover:bg-blue-600 transition-colors"
+              >
+                {userInitials}
+              </button>
+
+              {/* User Dropdown */}
+              {showUserDropdown && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
+                  <button
+                    onClick={navigateToProfile}
+                    className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-blue-50 flex items-center space-x-2"
+                  >
+                    <User size={16} />
+                    <span>Profile</span>
+                  </button>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 flex items-center space-x-2"
+                  >
+                    <LogOut size={16} />
+                    <span>Logout</span>
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

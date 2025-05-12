@@ -31,7 +31,10 @@ export default function OngoingPractices() {
       if (user) {
         try {
           const practicesRef = collection(db, 'practices');
-          const q = query(practicesRef, where('userId', '==', user.uid));
+          const q = query(practicesRef, 
+            where('userId', '==', user.uid),
+            where('status', '==', 'ongoing')
+          );
           const querySnapshot = await getDocs(q);
           
           const practicesData = querySnapshot.docs.map(doc => ({
@@ -56,7 +59,7 @@ export default function OngoingPractices() {
     switch (status) {
       case 'pending':
         return <Clock className="w-5 h-5 text-yellow-500" />;
-      case 'in-progress':
+      case 'ongoing':
         return <FolderOpen className="w-5 h-5 text-blue-500" />;
       case 'completed':
         return <CheckCircle className="w-5 h-5 text-green-500" />;
@@ -71,7 +74,7 @@ export default function OngoingPractices() {
     switch (status) {
       case 'pending':
         return 'bg-yellow-100 text-yellow-800';
-      case 'in-progress':
+      case 'ongoing':
         return 'bg-blue-100 text-blue-800';
       case 'completed':
         return 'bg-green-100 text-green-800';
@@ -295,7 +298,7 @@ export default function OngoingPractices() {
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                     >
                       <option value="pending">Pending</option>
-                      <option value="in-progress">In Progress</option>
+                      <option value="ongoing">Ongoing</option>
                       <option value="completed">Completed</option>
                       <option value="cancelled">Cancelled</option>
                     </select>

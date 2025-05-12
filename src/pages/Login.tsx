@@ -40,7 +40,7 @@ const Login = () => {
 
     try {
       await loginUser(formData.email, formData.password);
-      navigate('/');
+      navigate('/dashboard');
     } catch (err: any) {
       setError(err.message);
     } finally {

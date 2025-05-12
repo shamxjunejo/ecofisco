@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase/config';
 import { collection, query, where, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { Practice, PracticeDocument } from '../types/practice';
@@ -18,7 +19,8 @@ import {
   AlertCircle,
   Plus,
   FileCheck,
-  FileX
+  FileX,
+  ArrowLeft
 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 
@@ -27,6 +29,7 @@ import { toast } from 'react-hot-toast';
 // Loading Practice
 
 export default function PendingPractices() {
+  const navigate = useNavigate();
   const [user] = useAuthState(auth);
   const [practices, setPractices] = useState<Practice[]>([]);
   const [loading, setLoading] = useState(true);
@@ -168,6 +171,15 @@ export default function PendingPractices() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-8">
           <div>
+            <div className="flex items-center gap-4 mb-2">
+              <button
+                onClick={() => navigate('/dashboard')}
+                className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                <ArrowLeft className="w-5 h-5" />
+                <span>Back to Dashboard</span>
+              </button>
+            </div>
             <h1 className="text-3xl font-bold text-gray-900">Pending Practices</h1>
             <p className="mt-2 text-gray-600">Manage your pending service requests and required documents</p>
           </div>

@@ -28,8 +28,23 @@ export default function ServicesPage() {
 
       setLoadingStates(prev => ({ ...prev, [service.id]: true }));
 
-      // Create practice
-      const practiceId = await createPractice(user.uid, service.id);
+      const now = new Date().toISOString();
+      
+      // Create practice with all required fields
+      const practiceId = await createPractice({
+        userId: user.uid,
+        serviceId: service.id,
+        serviceName: service.name,
+        status: 'pending',
+        documents: [],
+        paymentStatus: 'unpaid',
+        paymentReminderSent: false,
+        progress: 0,
+        lastUpdatedBy: user.uid,
+        createdAt: now,
+        updatedAt: now
+      });
+      
       console.log('Practice created with ID:', practiceId);
 
       toast.success('Service added to your dashboard!');
