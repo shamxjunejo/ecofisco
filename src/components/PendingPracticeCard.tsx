@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { Practice, PracticeDocument } from '../types/practice';
-import { createCheckoutSession } from '../services/stripe';
-import { stripePromise } from '../config/stripe';
 import { toast } from 'react-hot-toast';
 import { 
   ChevronDown, 
@@ -30,24 +28,15 @@ export default function PendingPracticeCard({ practice, onPaymentSuccess }: Pend
   const handlePayment = async () => {
     try {
       setIsProcessing(true);
-      const { sessionId } = await createCheckoutSession({
-        id: practice.serviceId,
-        name: practice.serviceName,
-        price: practice.price || 0,
-        userId: practice.userId,
-        practiceId: practice.id
-      });
-
-      const stripe = await stripePromise;
-      if (stripe) {
-        const { error } = await stripe.redirectToCheckout({ sessionId });
-        if (error) {
-          toast.error('Failed to initiate payment. Please try again.');
-        }
-      }
+      // Simulating payment process
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Call onPaymentSuccess to update the practice status
+      onPaymentSuccess();
+      toast.success('Payment request submitted successfully');
     } catch (error) {
       console.error('Payment error:', error);
-      toast.error('Failed to process payment. Please try again.');
+      toast.error('Failed to process payment request. Please try again.');
     } finally {
       setIsProcessing(false);
     }
@@ -135,7 +124,7 @@ export default function PendingPracticeCard({ practice, onPaymentSuccess }: Pend
                 ) : (
                   <>
                     <CreditCard className="w-4 h-4" />
-                    Complete Payment
+                    Request Payment
                   </>
                 )}
               </button>
