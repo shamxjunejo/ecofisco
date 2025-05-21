@@ -10,14 +10,17 @@
     "preview": "vite preview",
     "deploy": "vercel deploy --prod"
   },
-
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@heroicons/react": "^2.2.0",
     "@types/node": "^20.11.19",
+    "date-fns": "^4.1.0",
     "firebase": "^10.8.0",
     "lucide-react": "^0.330.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
+    "react-helmet-async": "^2.0.5",
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.22.1"
   },

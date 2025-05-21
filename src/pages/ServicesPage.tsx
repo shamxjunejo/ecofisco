@@ -40,9 +40,7 @@ export default function ServicesPage() {
         paymentStatus: 'unpaid',
         paymentReminderSent: false,
         progress: 0,
-        lastUpdatedBy: user.uid,
-        createdAt: now,
-        updatedAt: now
+        lastUpdatedBy: user.uid
       });
       
       console.log('Practice created with ID:', practiceId);
