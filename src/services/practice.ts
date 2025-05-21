@@ -1,7 +1,8 @@
 import { db } from '../firebase/config';
-import { collection, query, where, getDocs, doc, updateDoc, addDoc, deleteDoc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
-import { Practice, PracticeUpdate } from '../types/practice';
-import { SERVICE_REQUIREMENTS } from '../config/serviceRequirements';
+import { collection, query, where, getDocs, doc, updateDoc, getDoc, serverTimestamp, setDoc, deleteDoc } from 'firebase/firestore';
+import { Practice } from '../types/practice';
+// Removed unused import
+// import { SERVICE_REQUIREMENTS } from '../config/serviceRequirements';
 
 export const getPractices = async (userId: string): Promise<Practice[]> => {
   const practicesRef = collection(db, 'practices');
